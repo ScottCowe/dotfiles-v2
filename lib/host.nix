@@ -2,27 +2,25 @@
 
 with builtins; {
   mkHost = { system, hostname, stateVersion, users }:
-  let
-    systemUsers = (map (u: user.mkSystemUser u) users);
-    hmUsers = (map (u: user.mkHMUser lib.mkMerge [ u { stateVersion = stateVersion; }]) users);
-  in lib.nixosSystem {
+  lib.nixosSystem {
     modules = [
       {
-        imports = [] ++ systemUsers;
+        imports = [] ++ (map (u: user.mkSystemUser u) users);
 
         networking = {
           hostName = "${hostname}";
           networkmanager.enable = true;
         };
+        
+        nix.settings.experimental-features = [ "nix-command" "flakes" ];
+
+        nixpkgs.config.allowUnfree = true;
 
         system.stateVersion = "${stateVersion}";
       }
 
       ../systems/${hostname}
-
-      home-manager.nixosModule.home-manager {
-        imports = [] ++ hmUsers;
-      }
+      ../systems/${hostname}/hardware-configuration.nix
     ]; 
   };
 }

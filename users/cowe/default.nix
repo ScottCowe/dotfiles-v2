@@ -1,5 +1,9 @@
 { ... }:
 
 {
-  imports = [];
+  imports = [ ../../home ];
+
+  config = {
+    
+  };
 }

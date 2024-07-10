@@ -3,32 +3,20 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
-
-    home-manager = {
-      url = "github:nix-community/home-manager";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
   };
 
-  outputs = { self, nixpkgs, home-manager, ... }@inputs: 
-  let
-    inherit (nixpkgs) lib;
-    util = import ./lib { inherit lib; };
-
-    inherit (util) host;
-
-    pkgs = import nixpkgs;
-  in {
+  outputs = { self, nixpkgs, ... }@inputs: 
+  {
     nixosConfigurations = {
-      hp-laptop = host.mkHost {
+      hp-laptop = (import ./lib { inherit inputs; }).host.mkHost {
         system = "x86_64-linux";
         hostname = "hp-laptop";
         stateVersion = "23.11";
         users = [{
           name = "cowe";
           groups = [ "wheel" "networkmanager" ];
-          uid = 1000;
-          shell = pkgs.zsh;
+          uid = 1001;
+          shell = nixpkgs.legacyPackages."x86_64-linux".zsh;
         }];
       };
     };
