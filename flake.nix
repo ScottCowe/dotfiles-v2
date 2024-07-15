@@ -11,7 +11,7 @@
       hp-laptop = (import ./lib { inherit inputs; }).host.mkHost {
         system = "x86_64-linux";
         hostname = "hp-laptop";
-        stateVersion = "24.11";
+        stateVersion = "24.05";
         users = [{
           name = "cowe";
           groups = [ "wheel" "networkmanager" ];
