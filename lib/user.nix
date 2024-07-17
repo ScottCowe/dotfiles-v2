@@ -1,4 +1,4 @@
-{ lib, ... }:
+{ lib, home-manager, ... }:
 
 {
   mkSystemUser = { name, groups, uid, shell, ... }:
@@ -12,5 +12,18 @@
       initialPassword = "password";
       shell = shell;
     }; 
+  };
+
+  mkHMUser = { name, stateVersion, ... }: 
+  {
+    home-manager.users."${name}" = lib.mkMerge [
+      {
+	home.stateVersion = "${stateVersion}";
+	home.username = "${name}";
+	home.homeDirectory = "/home/${name}";
+      }
+
+      ../users/${name}
+    ];
   };
 }

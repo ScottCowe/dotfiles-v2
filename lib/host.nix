@@ -1,8 +1,10 @@
-{ lib, user, ... }:
+{ lib, user, home-manager, inputs, ... }:
 
 with builtins; {
   mkHost = { system, hostname, stateVersion, users }:
   lib.nixosSystem {
+    specialArgs = { inherit inputs; };
+
     modules = [
       {
         imports = [] ++ (map (u: user.mkSystemUser u) users);
@@ -21,6 +23,12 @@ with builtins; {
 
       ../systems/${hostname}
       ../systems/${hostname}/hardware-configuration.nix
+      
+      home-manager.nixosModules.home-manager
+
+      {
+	imports = [] ++ (map (u: user.mkHMUser u) users);
+      }
     ]; 
   };
 }
