@@ -46,7 +46,7 @@ with lib; {
         "$mod, D, exec, rofi -show drun"
         "$mod, F, fullscreen"
         ''$mod, S, exec, grim -g "$(slurp -w 0)" - | wl-copy --type image/png''
-	"$mod, B, exec, firefox"
+        "$mod, B, exec, firefox"
 
         "$mod, h, movefocus, l"
         "$mod, j, movefocus, d"

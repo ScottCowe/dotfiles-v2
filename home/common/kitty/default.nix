@@ -10,11 +10,11 @@ with lib; {
       enable = true;
 
       theme = "Catppuccin-Mocha";
-      #font =  {
-      #  name = "FiraCode Nerd Font";
-      #  package = pkgs.nerdfonts;
-      #  size = 12;
-      #};
+      font =  {
+        name = "FiraCode Nerd Font";
+        package = (pkgs.nerdfonts.override { fonts = [ "FiraCode" ]; });
+        size = 12;
+      };
 
       settings = {
         clear_all_shortcuts = true;
