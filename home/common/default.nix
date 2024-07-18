@@ -18,6 +18,7 @@
     ./eza
     ./bat
     ./bottom
+    ./neovim
   ];
 
   config = {
@@ -34,6 +35,7 @@
       eza.enable = true;
       bat.enable = true;
       bottom.enable = true;
+      neovim.enable = true;
     };
   };
 }

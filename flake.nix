@@ -13,6 +13,8 @@
       url = "gitlab:rycee/nur-expressions?dir=pkgs/firefox-addons";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    nixvim-flake.url = "github:ScottCowe/nixvim-flake";
   };
 
   outputs = { self, nixpkgs, ... }@inputs: 
