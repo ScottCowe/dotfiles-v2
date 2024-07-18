@@ -1,7 +1,7 @@
 { lib, config, ... }:
 
 with lib; {
-  options.git = {
+  options.common.git = {
     enable = mkOption {
       type = types.bool;
       default = true;
@@ -12,7 +12,7 @@ with lib; {
     };
   };
 
-  config = mkIf config.git.enable {
+  config = mkIf config.common.git.enable {
     programs.git = {
       enable = true;
       userName = "Scott Cowe";
