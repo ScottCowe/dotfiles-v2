@@ -21,6 +21,7 @@ with lib; {
         enabled_layouts = "tall:bias=50;full_size=1;mirrored=false";
         tab_bar_style = "powerline";
         tab_powerline_style = "slanted";
+        enable_audio_bell = false;
       };
 
       keybindings = {
