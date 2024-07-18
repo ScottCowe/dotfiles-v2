@@ -14,13 +14,13 @@
     }; 
   };
 
-  mkHMUser = { name, stateVersion, ... }: 
+  mkHMUser = { name, ... }: stateVersion:
   {
     home-manager.users."${name}" = lib.mkMerge [
       {
-	home.stateVersion = "${stateVersion}";
-	home.username = "${name}";
-	home.homeDirectory = "/home/${name}";
+        home.stateVersion = "${stateVersion}";
+        home.username = "${name}";
+        home.homeDirectory = "/home/${name}";
       }
 
       ../users/${name}

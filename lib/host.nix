@@ -27,11 +27,11 @@ with builtins; {
       home-manager.nixosModules.home-manager
 
       {
-	home-manager.extraSpecialArgs = {
-	  inherit inputs;
-	};	
+        home-manager.extraSpecialArgs = {
+          inherit inputs;
+        };	
 
-	imports = [] ++ (map (u: user.mkHMUser u) users);
+        imports = [] ++ (map (u: user.mkHMUser u stateVersion) users);
       }
     ]; 
   };

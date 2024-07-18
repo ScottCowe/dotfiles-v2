@@ -20,16 +20,18 @@
   outputs = { self, nixpkgs, ... }@inputs: 
   {
     nixosConfigurations = {
-      hp-laptop = (import ./lib { inherit inputs; }).host.mkHost {
+      hp-laptop = 
+      let
         system = "x86_64-linux";
+      in (import ./lib { inherit inputs; }).host.mkHost {
+        system = "${system}";
         hostname = "hp-laptop";
         stateVersion = "24.05";
         users = [{
           name = "cowe";
           groups = [ "wheel" "networkmanager" ];
           uid = 1001;
-          shell = nixpkgs.legacyPackages."x86_64-linux".zsh;
-	  stateVersion = "24.05";
+          shell = nixpkgs.legacyPackages."${system}".zsh;
         }];
       };
     };
