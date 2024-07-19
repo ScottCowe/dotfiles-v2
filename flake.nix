@@ -15,9 +15,11 @@
     };
 
     nixvim-flake.url = "github:ScottCowe/nixvim-flake";
+
+    nix-colors.url = "github:misterio77/nix-colors";
   };
 
-  outputs = { self, nixpkgs, ... }@inputs: 
+  outputs = { self, nixpkgs, nix-colors, ... }@inputs: 
   {
     nixosConfigurations = {
       hp-laptop = 
@@ -32,6 +34,7 @@
           groups = [ "wheel" "networkmanager" ];
           uid = 1001;
           shell = nixpkgs.legacyPackages."${system}".zsh;
+          colorScheme = nix-colors.colorSchemes.onedark;
         }];
       };
     };

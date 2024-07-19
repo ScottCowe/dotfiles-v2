@@ -1,4 +1,4 @@
-{ lib, user, home-manager, inputs, ... }:
+{ lib, user, home-manager, inputs, nix-colors, ... }:
 
 with builtins; {
   mkHost = { system, hostname, stateVersion, users }:
@@ -29,6 +29,7 @@ with builtins; {
       {
         home-manager.extraSpecialArgs = {
           inherit inputs;
+          inherit nix-colors;
         };	
 
         imports = [] ++ (map (u: user.mkHMUser u stateVersion) users);

@@ -1,4 +1,4 @@
-{ lib, home-manager, ... }:
+{ lib, nix-colors, ... }:
 
 {
   mkSystemUser = { name, groups, uid, shell, ... }:
@@ -14,16 +14,25 @@
     }; 
   };
 
-  mkHMUser = { name, ... }: stateVersion:
+  mkHMUser = { name, colorScheme, ... }: stateVersion:
   {
     home-manager.users."${name}" = lib.mkMerge [
       {
         home.stateVersion = "${stateVersion}";
         home.username = "${name}";
         home.homeDirectory = "/home/${name}";
+
       }
 
       ../users/${name}
+
+      {
+        imports = [
+          nix-colors.homeManagerModules.default
+        ];
+
+        config.colorScheme = colorScheme;
+      }
     ];
   };
 }
