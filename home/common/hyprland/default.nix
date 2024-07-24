@@ -84,8 +84,7 @@ with lib; {
         gaps_in = 0;
         gaps_out = 0;
         border_size = 1;
-        #"col.active_border" = "rgb(${config.colorScheme.palette.base0D})";
-        "col.active_border" = "rgb(696969)";
+        "col.active_border" = "rgb(${config.colorScheme.palette.base0D})";
         "col.inactive_border" = "rgba(00000000)";
       };
 

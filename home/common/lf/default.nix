@@ -63,7 +63,7 @@ with lib; {
         '';
         rename = ''
           %{{
-          prinf "New name: "
+          printf "New name: "
           read NAME 
           mv $f $NAME
           }}
@@ -109,8 +109,8 @@ with lib; {
               ${pkgs.kitty}/bin/kitty +kitten icat --silent --stdin no --transfer-mode file --place "''${w}x''${h}@''${x}x''${y}" "$file" < /dev/null > /dev/tty
               exit 1
           fi
-          
-          ${pkgs.pistol}/bin/pistol "$file"
+       
+          ${pkgs.bat}/bin/bat --paging=always --style=plain --color=always $file
         '';
 
         cleaner = pkgs.writeShellScriptBin "clean.sh" ''

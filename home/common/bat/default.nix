@@ -1,4 +1,4 @@
-{ lib, config, ... }:
+{ lib, config, pkgs, ... }:
 
 with lib; {
   options.common.bat = {
@@ -8,6 +8,10 @@ with lib; {
   config = mkIf config.common.bat.enable {
     programs.bat = {
       enable = true;
+
+      config = {
+        theme = "base16";
+      };
     };
   };
 }
