@@ -5,7 +5,7 @@
 
   config = {
     graphical = {
-      gtk.enable = true;
+      gtk-qt.enable = true;
     };
 
     common = {
