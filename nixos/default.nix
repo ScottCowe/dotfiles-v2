@@ -3,5 +3,7 @@
 {
   imports = [
     ./grub
+    ./pipewire
+    ./timezone
   ];
 }

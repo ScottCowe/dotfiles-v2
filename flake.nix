@@ -21,11 +21,14 @@
 
   outputs = { self, nixpkgs, nix-colors, ... }@inputs: 
   {
-    nixosConfigurations = {
+    nixosConfigurations = let 
+      host = (import ./lib { inherit inputs; }).host;
+      # user = (import ./lib { inherit inputs; }).user;
+    in {
       hp-laptop = 
       let
         system = "x86_64-linux";
-      in (import ./lib { inherit inputs; }).host.mkHost {
+      in host.mkHost {
         system = "${system}";
         hostname = "hp-laptop";
         stateVersion = "24.05";
