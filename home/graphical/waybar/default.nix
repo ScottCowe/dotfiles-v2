@@ -42,8 +42,6 @@ with lib; {
               "7" = "7";
               "8" = "8";
               "9" = "9";
-              # "active" = "󱓻";
-              # "urgent" = "󱓻";
             };
             persistent_workspaces = {
               "1" = [];

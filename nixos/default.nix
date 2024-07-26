@@ -2,7 +2,7 @@
 
 {
   imports = [
-    ./grub
+    ./boot
     ./pipewire
     ./timezone
     ./kanata

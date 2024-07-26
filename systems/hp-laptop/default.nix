@@ -5,8 +5,12 @@
   
   config = {
     pipewire.enable = true;
-    timezone.enable = true;
     kanata.enable = true;
+    timezone = { 
+      enable = true; 
+      automatic = false;
+      zone = "Europe/London";
+    };
 
     i18n.defaultLocale = "en_US.UTF-8";
     console = {
