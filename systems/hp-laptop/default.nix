@@ -9,7 +9,7 @@
     timezone = { 
       enable = true; 
       automatic = false;
-      zone = "Europe/London";
+      zone = "America/Vancouver";
     };
 
     i18n.defaultLocale = "en_US.UTF-8";
