@@ -14,6 +14,7 @@
       ssh.enable = true;
       git.enable = true;
       xdg.enable = true;
+      aerc.enable = true;
     };
 
     graphical = {
@@ -27,6 +28,7 @@
       kitty.enable = true;
       hyprland.enable = true;
       easyeffects.enable = true;
+      discord.enable = true;
     };
   };
 }

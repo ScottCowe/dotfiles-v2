@@ -11,5 +11,6 @@
     ./zsh 
     ./neovim
     ./xdg
+    ./aerc
   ];
 }

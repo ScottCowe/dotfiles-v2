@@ -12,5 +12,6 @@
     ./wlogout 
     ./hyprland
     ./easyeffects
+    ./discord
   ];
 }
