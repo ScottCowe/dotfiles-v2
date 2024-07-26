@@ -5,5 +5,6 @@
     ./grub
     ./pipewire
     ./timezone
+    ./kanata
   ];
 }
