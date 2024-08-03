@@ -6,5 +6,6 @@
     ./pipewire
     ./timezone
     ./kanata
+    ./nvidia
   ];
 }

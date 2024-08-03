@@ -40,6 +40,22 @@
           colorScheme = nix-colors.colorSchemes.onedark;
         }];
       };
+      
+      desktop = 
+      let
+        system = "x86_64-linux";
+      in host.mkHost {
+        system = "${system}";
+        hostname = "desktop";
+        stateVersion = "24.11";
+        users = [{
+          name = "cowe";
+          groups = [ "wheel" "networkmanager" ];
+          uid = 1001;
+          shell = nixpkgs.legacyPackages."${system}".zsh;
+          colorScheme = nix-colors.colorSchemes.onedark;
+        }];
+      };
     };
   };
 }
