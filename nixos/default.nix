@@ -7,5 +7,6 @@
     ./timezone
     ./kanata
     ./nvidia
+    ./wooting
   ];
 }

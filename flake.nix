@@ -50,7 +50,7 @@
         stateVersion = "24.11";
         users = [{
           name = "cowe";
-          groups = [ "wheel" "networkmanager" ];
+          groups = [ "wheel" "networkmanager" "input" ];
           uid = 1001;
           shell = nixpkgs.legacyPackages."${system}".zsh;
           colorScheme = nix-colors.colorSchemes.onedark;
