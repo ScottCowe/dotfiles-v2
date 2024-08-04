@@ -2,9 +2,10 @@
 
 rec {
   lib = inputs.nixpkgs.lib;
-  home-manager = inputs.home-manager;
   nix-colors = inputs.nix-colors;
 
-  user = import ./user.nix { inherit lib nix-colors; };
-  host = import ./host.nix { inherit lib user home-manager inputs nix-colors; };
+  mkPCHost = pc.mkPCHost;
+  mkPCUser = pc.mkPCUser;
+
+  pc = import ./pc.nix { inherit lib inputs nix-colors mkPCUser; };
 }

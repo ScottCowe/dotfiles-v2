@@ -12,8 +12,6 @@ with lib; {
       autosuggestion.enable = true;
       syntaxHighlighting.enable = true;
 
-      shellAliases = {};
-
       history.size = 10000;
       history.path = "${config.xdg.dataHome}/zsh/history";
 

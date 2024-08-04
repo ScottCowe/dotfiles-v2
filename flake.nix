@@ -22,40 +22,10 @@
   outputs = { self, nixpkgs, nix-colors, ... }@inputs: 
   {
     nixosConfigurations = let 
-      host = (import ./lib { inherit inputs; }).host;
-      # user = (import ./lib { inherit inputs; }).user;
+      utils = (import ./lib { inherit inputs; });
     in {
-      hp-laptop = 
-      let
-        system = "x86_64-linux";
-      in host.mkHost {
-        system = "${system}";
-        hostname = "hp-laptop";
-        stateVersion = "24.05";
-        users = [{
-          name = "cowe";
-          groups = [ "wheel" "networkmanager" ];
-          uid = 1001;
-          shell = nixpkgs.legacyPackages."${system}".zsh;
-          colorScheme = nix-colors.colorSchemes.onedark;
-        }];
-      };
-      
-      desktop = 
-      let
-        system = "x86_64-linux";
-      in host.mkHost {
-        system = "${system}";
-        hostname = "desktop";
-        stateVersion = "24.11";
-        users = [{
-          name = "cowe";
-          groups = [ "wheel" "networkmanager" "input" ];
-          uid = 1001;
-          shell = nixpkgs.legacyPackages."${system}".zsh;
-          colorScheme = nix-colors.colorSchemes.onedark;
-        }];
-      };
+      hp-laptop = utils.mkPCHost (import ./systems/hp-laptop { inherit inputs; });
+      desktop = utils.mkPCHost (import ./systems/desktop { inherit inputs; });
     };
   };
 }
