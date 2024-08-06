@@ -33,6 +33,8 @@
       hyprland.enable = true;
       easyeffects.enable = true;
       discord.enable = true;
+      prismlauncher.enable = true;
+      thunderbird.enable = true;
     };
   };
 }

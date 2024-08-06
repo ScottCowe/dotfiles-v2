@@ -13,5 +13,7 @@
     ./hyprland
     ./easyeffects
     ./discord
+    ./prismlauncher
+    ./thunderbird
   ];
 }

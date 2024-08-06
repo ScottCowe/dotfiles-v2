@@ -1,7 +1,9 @@
 { lib, inputs, nix-colors, mkPCUser, ... }:
 
 {
-  mkPCHost = { system, hostname, stateVersion, users }:
+  mkPCHost = { system, hostname, stateVersion, users, 
+    unfreePackages ? [], extraConfig ? {}, timezone ? "Europe/London", locale ? "en_US.UTF-8",
+    consoleFont ? "Lat2-Terminus16", gpuType }:
   lib.nixosSystem {
     specialArgs = { inherit inputs; };
 
@@ -21,8 +23,27 @@
         home-manager.extraSpecialArgs = {
           inherit inputs;
           inherit nix-colors;
+          inherit gpuType;
         };	
+
+        nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) unfreePackages;
+
+        i18n.defaultLocale = locale;
+
+        timezone = { 
+          enable = true; 
+          automatic = false;
+          zone = timezone; 
+        };
+
+        console = {
+          earlySetup = true;
+          font = consoleFont; 
+          keyMap = "us";
+        };
       }
+
+      extraConfig
 
       ../systems/${hostname}/config.nix
       ../systems/${hostname}/hardware-configuration.nix

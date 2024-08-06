@@ -1,22 +1,11 @@
-{ lib, pkgs, config, ... }:
+{ pkgs, config, ... }:
 
 {
   imports = [ ../../nixos ];
   
   config = {
-    nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
-      "nvidia-x11"
-      "nvidia-settings"
-      "wootility"
-    ];
-
     pipewire.enable = true;
     kanata.enable = true;
-    timezone = { 
-      enable = true; 
-      automatic = false;
-      zone = "Europe/London";
-    };
     nvidia = {
       enable = true;
       package = config.boot.kernelPackages.nvidiaPackages.mkDriver {
@@ -29,12 +18,6 @@
       };
     };
     wooting.enable = true;
-
-    i18n.defaultLocale = "en_US.UTF-8";
-    console = {
-      font = "Lat2-Terminus16";
-      keyMap = "us";
-    };
 
     hardware.graphics = {
       enable = true;
