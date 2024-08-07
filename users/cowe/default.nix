@@ -3,7 +3,6 @@
 {
   name = "cowe";
   groups = [ "wheel" "networkmanager" ];
-  uid = 1001;
   shell = "zsh";
   colorScheme = inputs.nix-colors.colorSchemes.onedark;
   wm = "hyprland";

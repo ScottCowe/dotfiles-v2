@@ -1,15 +1,15 @@
-{ lib, inputs, nix-colors, mkPCUser, ... }:
+{ inputs, nix-colors, mkPCUser, ... }:
 
 {
-  mkPCHost = { system, hostname, stateVersion, users, 
+  mkPCHost = { system, hostname, stateVersion, pkgs, users, 
     unfreePackages ? [], extraConfig ? {}, timezone ? "Europe/London", locale ? "en_US.UTF-8",
     consoleFont ? "Lat2-Terminus16", gpuType }:
-  lib.nixosSystem {
+  pkgs.lib.nixosSystem {
     specialArgs = { inherit inputs; };
 
     modules = [
       {
-        imports = [] ++ (map (u: mkPCUser u system stateVersion) users);
+        imports = [] ++ (map (u: mkPCUser u system stateVersion pkgs) users);
 
         networking = {
           hostName = "${hostname}";
@@ -26,7 +26,7 @@
           inherit gpuType;
         };	
 
-        nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) unfreePackages;
+        nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (pkgs.lib.getName pkg) unfreePackages;
 
         i18n.defaultLocale = locale;
 
@@ -52,31 +52,30 @@
     ]; 
   };
   
-  mkPCUser = { name, groups, uid, shell, colorScheme, 
+  mkPCUser = { name, groups, shell, colorScheme, 
     wm, terminal, browser, fileBrowser, 
-    unfreePackages ? [], extraConfig ? {}, ... }: system: stateVersion: 
+    unfreePackages ? [], extraConfig ? {}, ... }: system: stateVersion: pkgs:
   {
     users.users."${name}" = {
       name = name;
       isNormalUser = true;
       isSystemUser = false;
       extraGroups = groups;
-      uid = uid;
       initialPassword = "password";
-      shell = if shell == "zsh" then inputs.nixpkgs.legacyPackages."${system}".zsh else null;
+      shell = if shell == "zsh" then pkgs.legacyPackages."${system}".zsh else null;
     };
 
     home-manager.extraSpecialArgs = {
       inherit name;
     };
 
-    home-manager.users."${name}" = lib.mkMerge [
+    home-manager.users."${name}" = pkgs.lib.mkMerge [
       {
         home.stateVersion = "${stateVersion}";
         home.username = "${name}";
         home.homeDirectory = "/home/${name}";
       
-        nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) unfreePackages;
+        nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (pkgs.lib.getName pkg) unfreePackages;
       }
 
       extraConfig
@@ -89,11 +88,11 @@
 
         config.colorScheme = colorScheme;
 
-        config.tui = lib.mkIf (shell == "zsh") {
+        config.tui = pkgs.lib.mkIf (shell == "zsh") {
           zsh.enable = true;
         };
 
-        config.graphical = lib.mkIf (wm == "hyprland") {
+        config.graphical = pkgs.lib.mkIf (wm == "hyprland") {
           hyprland.enable = true;
           wlogout.enable = true;
           waybar.enable = true;
