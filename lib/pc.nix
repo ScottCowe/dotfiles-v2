@@ -9,7 +9,7 @@
 
     modules = [
       {
-        imports = [] ++ (map (u: mkPCUser u stateVersion) users);
+        imports = [] ++ (map (u: mkPCUser u system stateVersion) users);
 
         networking = {
           hostName = "${hostname}";
@@ -52,7 +52,9 @@
     ]; 
   };
   
-  mkPCUser = { name, groups, uid, shell, colorScheme, ... }: stateVersion: 
+  mkPCUser = { name, groups, uid, shell, colorScheme, 
+    wm, terminal, browser, fileBrowser, 
+    unfreePackages ? [], extraConfig ? {}, ... }: system: stateVersion: 
   {
     users.users."${name}" = {
       name = name;
@@ -61,7 +63,11 @@
       extraGroups = groups;
       uid = uid;
       initialPassword = "password";
-      shell = shell;
+      shell = if shell == "zsh" then inputs.nixpkgs.legacyPackages."${system}".zsh else null;
+    };
+
+    home-manager.extraSpecialArgs = {
+      inherit name;
     };
 
     home-manager.users."${name}" = lib.mkMerge [
@@ -69,16 +75,31 @@
         home.stateVersion = "${stateVersion}";
         home.username = "${name}";
         home.homeDirectory = "/home/${name}";
+      
+        nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) unfreePackages;
       }
 
-      ../users/${name}/home.nix
+      extraConfig
 
       {
         imports = [
           inputs.nix-colors.homeManagerModules.default
+          ../home
         ];
 
         config.colorScheme = colorScheme;
+
+        config.tui = lib.mkIf (shell == "zsh") {
+          zsh.enable = true;
+        };
+
+        config.graphical = lib.mkIf (wm == "hyprland") {
+          hyprland.enable = true;
+          wlogout.enable = true;
+          waybar.enable = true;
+          mako.enable = true;
+          rofi.enable = true;
+        };
       }
     ];
   };

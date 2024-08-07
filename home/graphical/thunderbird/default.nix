@@ -1,4 +1,4 @@
-{ lib, config, ... }:
+{ lib, config, name, ... }:
 
 with lib; {
   options.graphical.thunderbird = {
@@ -9,7 +9,7 @@ with lib; {
     programs.thunderbird = {
       enable = true;
 
-      profiles.cowe = {
+      profiles."${name}" = {
         isDefault = true;
 
         settings = {

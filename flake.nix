@@ -26,6 +26,7 @@
     in {
       hp-laptop = utils.mkPCHost (import ./systems/hp-laptop { inherit inputs; });
       desktop = utils.mkPCHost (import ./systems/desktop { inherit inputs; });
+      iso-x86-64 = utils.mkISOSystem { system = "x86_64-linux"; };
     };
   };
 }
