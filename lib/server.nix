@@ -12,6 +12,16 @@
 
         system.stateVersion = "${stateVersion}";
 
+        boot.loader.grub = {
+          enable = true;
+          zfsSupport = true;
+          efiSupport = true;
+          efiInstallAsRemovable = true;
+          mirroredBoots = [
+            { devices = [ "nodev"]; path = "/boot"; }
+          ];
+        };
+
         networking = {
           hostName = "${hostname}";
           useDHCP = false;
@@ -22,10 +32,7 @@
           nameservers = [ "8.8.8.8" ];
         };
 
-        timezone = {
-          enable = true;
-          timezone = "${timezone}";
-        };
+        time.timeZone = timezone;
 
         services.openssh.enable = true;
 
@@ -33,6 +40,9 @@
       }
 
       extraConfig
+
+      ../systems/${hostname}/configuration.nix
+      ../systems/${hostname}/hardware-configuration.nix
     ];
   };
 
