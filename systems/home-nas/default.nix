@@ -2,6 +2,7 @@
 
 {
   hostname = "home-nas";
+  hostId = "4e98920d";
   system = "x86_64-linux";
   stateVersion = "24.11";
   pkgs = inputs.nixpkgs; 
@@ -9,7 +10,7 @@
     (import ./services/admin.nix)        
   ]; 
   networkInterfaces = {
-    enp4s0 = {
+    enp5s0 = {
       useDHCP = false;
       ipv4.addresses = [{
         address = "192.168.1.2";
@@ -18,8 +19,6 @@
     };
   };
   unfreePackages = [ ];
-  extraConfig = {
-
-  }; 
+  extraConfig = { }; 
   timezone = "Europe/London";
 }

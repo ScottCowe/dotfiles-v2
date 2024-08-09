@@ -1,7 +1,7 @@
 { inputs, mkServerService, ... }:
 
 {
-  mkServerHost = { hostname, system, stateVersion, pkgs, 
+  mkServerHost = { hostname, hostId, system, stateVersion, pkgs, 
     services, networkInterfaces,
     unfreePackages ? [], extraConfig ? {}, timezone ? "Europe/London", 
     ... }:
@@ -22,14 +22,19 @@
           ];
         };
 
+        # networking = {
+        #   hostName = "${hostname}";
+        #   useDHCP = false;
+        #   interfaces = networkInterfaces;
+        #
+        #   firewall.allowedTCPPorts = [ 22 ];
+        #   defaultGateway = "192.168.1.1";
+        #   nameservers = [ "8.8.8.8" ];
+        # };
+
         networking = {
           hostName = "${hostname}";
-          useDHCP = false;
-          interfaces = networkInterfaces;
-
-          firewall.allowedTCPPorts = [ 22 ];
-          defaultGateway = "192.168.1.1";
-          nameservers = [ "8.8.8.8" ];
+          hostId = "${hostId}";
         };
 
         time.timeZone = timezone;
@@ -46,19 +51,18 @@
     ];
   };
 
-  mkServerService = { name, sudo ? false, authorizedSHHKeys ? [], config, ... }: pkgs:
-  pkgs.lib.mkMerge [
-    { 
-      users.users."${name}" = {
-        name = name;
-        isNormalUser = false;
-        isSystemUser = true;
-        extraGroups = [] ++ pkgs.lib.mkIf sudo [ "wheel" ];
-        initialPassword = "password"; # TODO: Change to initialHashedPassword and use sops
-        openssh.authorizedKeys.keys = authorizedSHHKeys;
-      };
-    }
+  mkServerService = { name, sudo ? false, authorizedSHHKeys ? [], extraConfig, ... }: pkgs:
+  { 
+    imports = [ extraConfig ];
 
-    config
-  ];
+    users.users."${name}" = {
+      name = name;
+      isNormalUser = true;
+      isSystemUser = false;
+      # extraGroups = [] ++ pkgs.lib.mkIf sudo [ "wheel" ];
+      extraGroups = [ "wheel" ];
+      initialPassword = "password"; # TODO: Change to initialHashedPassword and use sops
+      openssh.authorizedKeys.keys = authorizedSHHKeys;
+    };
+  };
 }
