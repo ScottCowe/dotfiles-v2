@@ -22,31 +22,34 @@
           ];
         };
 
-        # networking = {
-        #   hostName = "${hostname}";
-        #   useDHCP = false;
-        #   interfaces = networkInterfaces;
-        #
-        #   firewall.allowedTCPPorts = [ 22 ];
-        #   defaultGateway = "192.168.1.1";
-        #   nameservers = [ "8.8.8.8" ];
-        # };
-
         networking = {
           hostName = "${hostname}";
           hostId = "${hostId}";
+          useDHCP = false;
+          interfaces = networkInterfaces;
+
+          firewall.allowedTCPPorts = [ 22 ];
+          defaultGateway = "192.168.1.1";
+          nameservers = [ "8.8.8.8" ];
         };
 
         time.timeZone = timezone;
 
-        services.openssh.enable = true;
+        services.openssh = {
+          enable = true;
+
+          settings = {
+            PasswordAuthentication = false;
+            KbdInteractiveAuthentication = false;
+            PermitRootLogin = "no";
+          };
+        };
 
         imports = [] ++ (map (s: mkServerService s pkgs) services);
       }
 
       extraConfig
 
-      ../systems/${hostname}/configuration.nix
       ../systems/${hostname}/hardware-configuration.nix
     ];
   };

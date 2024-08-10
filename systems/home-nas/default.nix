@@ -1,8 +1,8 @@
 { inputs, ... }:
 
-{
+rec {
   hostname = "home-nas";
-  hostId = "4e98920d";
+  hostId = "4e98920e";
   system = "x86_64-linux";
   stateVersion = "24.11";
   pkgs = inputs.nixpkgs; 
@@ -19,6 +19,8 @@
     };
   };
   unfreePackages = [ ];
-  extraConfig = { }; 
+  extraConfig = { 
+    environment.systemPackages = with pkgs.legacyPackages.${system}; [ vim git bottom ];
+  }; 
   timezone = "Europe/London";
 }
