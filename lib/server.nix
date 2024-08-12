@@ -20,6 +20,7 @@
           mirroredBoots = [
             { devices = [ "nodev" ]; path = "/boot"; }
           ];
+          configurationLimit = 10;
         };
 
         networking = {
@@ -44,6 +45,14 @@
             PermitRootLogin = "no";
           };
         };
+
+        nix.gs = {
+          automatic = true;
+          dates = "weekly";
+          options = "--delete-older-than 1w";
+        }; 
+
+        nix.settings.auto-optimise-store = true;
 
         imports = [] ++ (map (s: mkServerService s nixpkgs) services);
       }
