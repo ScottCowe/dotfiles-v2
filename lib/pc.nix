@@ -2,8 +2,9 @@
 
 {
   mkPCHost = { system, hostname, stateVersion, pkgs, users, 
-    unfreePackages ? [], extraConfig ? {}, timezone ? "Europe/London", locale ? "en_US.UTF-8",
-    consoleFont ? "Lat2-Terminus16", gpuType }:
+    unfreePackages ? [], extraConfig ? {}, timezone ? "Europe/London", 
+    locale ? "en_US.UTF-8", consoleFont ? "Lat2-Terminus16", gpuType 
+  }:
   pkgs.lib.nixosSystem {
     specialArgs = { inherit inputs; };
 

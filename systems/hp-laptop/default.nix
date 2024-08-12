@@ -5,6 +5,7 @@ rec {
   hostname = "hp-laptop";
   stateVersion = "24.05";
   pkgs = inputs.nixpkgs;
+  gpuType = "intel";
   users = [
     (import ../../users/cowe { inherit inputs system; })
   ];

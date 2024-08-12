@@ -3,8 +3,8 @@
 {
   mkServerHost = { hostname, hostId, system, stateVersion, nixpkgs, 
     services, networkInterfaces,
-    unfreePackages ? [], extraConfig ? {}, timezone ? "Europe/London", 
-    ... }:
+    unfreePackages ? [], extraConfig ? {}, timezone ? "Europe/London"
+  }:
   nixpkgs.lib.nixosSystem {
     modules = [
       {
@@ -18,7 +18,7 @@
           efiSupport = true;
           efiInstallAsRemovable = true;
           mirroredBoots = [
-            { devices = [ "nodev"]; path = "/boot"; }
+            { devices = [ "nodev" ]; path = "/boot"; }
           ];
         };
 
@@ -41,7 +41,7 @@
           settings = {
             PasswordAuthentication = false;
             KbdInteractiveAuthentication = false;
-            PermitRootLogin = "no";
+            # PermitRootLogin = "no";
           };
         };
 
@@ -62,8 +62,8 @@
       name = name;
       isNormalUser = true;
       isSystemUser = false;
-      # extraGroups = [] ++ pkgs.lib.mkIf sudo [ "wheel" ];
-      extraGroups = [ "wheel" ];
+      # extraGroups = [] ++ nixpkgs.lib.mkIf sudo [ "wheel" ];
+      extraGroups = [ ] ++ (if sudo then [ "wheel" ] else []);
       initialPassword = "password"; # TODO: Change to initialHashedPassword and use sops
       openssh.authorizedKeys.keys = authorizedSHHKeys;
     };

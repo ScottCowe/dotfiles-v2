@@ -23,7 +23,7 @@ rec {
     pkgs = nixpkgs.legacyPackages.${system};
     # lib = nixpkgs.lib;
   in { 
-    environment.systemPackages = with pkgs; [ vim git bottom ];
+    environment.systemPackages = with pkgs; [ vim git bottom neofetch ];
   }; 
   timezone = "Europe/London";
 }

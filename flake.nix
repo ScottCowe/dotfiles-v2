@@ -18,9 +18,11 @@
     nixvim-flake.url = "github:ScottCowe/nixvim-flake";
 
     nix-colors.url = "github:misterio77/nix-colors";
+
+    deploy-rs.url = "github:serokell/deploy-rs";
   };
 
-  outputs = { self, nixpkgs, ... }@inputs: 
+  outputs = { self, ... }@inputs: 
   {
     nixosConfigurations = let 
       utils = (import ./lib { inherit inputs; });
@@ -30,5 +32,20 @@
       iso-x86-64 = utils.mkISOSystem "x86_64-linux" inputs.nixpkgs;
       home-nas = utils.mkServerHost (import ./systems/home-nas { inherit inputs; });
     };
+
+    deploy.nodes.home-nas = {
+      hostname = "192.168.1.2";
+      fastConnection = true;
+      interactiveSudo = true;
+      remoteBuild = true;
+
+      profiles.system = {
+        sshUser = "admin";
+        path = inputs.deploy-rs.lib.x86_64-linux.activate.nixos self.nixosConfigurations.home-nas;
+        user = "root";
+      };
+    };
+    
+    checks = builtins.mapAttrs (system: deployLib: deployLib.deployChecks self.deploy) inputs.deploy-rs.lib;
   };
 }
