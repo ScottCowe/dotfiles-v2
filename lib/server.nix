@@ -1,11 +1,11 @@
 { inputs, mkServerService, ... }:
 
 {
-  mkServerHost = { hostname, hostId, system, stateVersion, pkgs, 
+  mkServerHost = { hostname, hostId, system, stateVersion, nixpkgs, 
     services, networkInterfaces,
     unfreePackages ? [], extraConfig ? {}, timezone ? "Europe/London", 
     ... }:
-  pkgs.lib.nixosSystem {
+  nixpkgs.lib.nixosSystem {
     modules = [
       {
         nix.settings.experimental-features = [ "nix-command" "flakes" ];
@@ -45,7 +45,7 @@
           };
         };
 
-        imports = [] ++ (map (s: mkServerService s pkgs) services);
+        imports = [] ++ (map (s: mkServerService s nixpkgs) services);
       }
 
       extraConfig
@@ -54,7 +54,7 @@
     ];
   };
 
-  mkServerService = { name, sudo ? false, authorizedSHHKeys ? [], extraConfig, ... }: pkgs:
+  mkServerService = { name, sudo ? false, authorizedSHHKeys ? [], extraConfig, ... }: nixpkgs:
   { 
     imports = [ extraConfig ];
 

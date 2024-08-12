@@ -2,7 +2,8 @@
   description = "Version 2 of ScottCowe's dotfiles";
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    nixpkgs-24-05.url = "github:nixos/nixpkgs/nixos-24.05";
 
     home-manager = {
       url = "github:nix-community/home-manager";
@@ -19,7 +20,7 @@
     nix-colors.url = "github:misterio77/nix-colors";
   };
 
-  outputs = { self, nixpkgs, nix-colors, ... }@inputs: 
+  outputs = { self, nixpkgs, ... }@inputs: 
   {
     nixosConfigurations = let 
       utils = (import ./lib { inherit inputs; });

@@ -5,7 +5,7 @@ rec {
   hostId = "4e98920e";
   system = "x86_64-linux";
   stateVersion = "24.11";
-  pkgs = inputs.nixpkgs; 
+  nixpkgs = inputs.nixpkgs; 
   services = [ 
     (import ./services/admin.nix)        
   ]; 
@@ -19,8 +19,11 @@ rec {
     };
   };
   unfreePackages = [ ];
-  extraConfig = { 
-    environment.systemPackages = with pkgs.legacyPackages.${system}; [ vim git bottom ];
+  extraConfig = let
+    pkgs = nixpkgs.legacyPackages.${system};
+    # lib = nixpkgs.lib;
+  in { 
+    environment.systemPackages = with pkgs; [ vim git bottom ];
   }; 
   timezone = "Europe/London";
 }

@@ -16,9 +16,6 @@ rec {
     "nvidia-x11"
     "nvidia-settings"
     "wootility"
-    "logmein-hamachi"
   ];
-  extraConfig = {
-
-  };
+  extraConfig = { };
 }
