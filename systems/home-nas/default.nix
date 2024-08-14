@@ -1,13 +1,17 @@
 { inputs, ... }:
 
-rec {
+let 
+  nixpkgs = inputs.nixpkgs;
+in rec {
   hostname = "home-nas";
   hostId = "4e98920e";
   system = "x86_64-linux";
   stateVersion = "24.11";
-  nixpkgs = inputs.nixpkgs; 
+  pkgs = nixpkgs.legacyPackages.${system};
+  lib = nixpkgs.lib;
   services = [ 
     (import ./services/admin.nix)        
+    (import ./services/docker.nix)
   ]; 
   networkInterfaces = {
     enp5s0 = {
@@ -18,11 +22,10 @@ rec {
       }];   
     };
   };
-  unfreePackages = [ ];
-  extraConfig = let
-    pkgs = nixpkgs.legacyPackages.${system};
-    # lib = nixpkgs.lib;
-  in { 
+  unfreePackages = [
+    "nvidia-x11"
+  ];
+  extraConfig = { 
     environment.systemPackages = with pkgs; [ vim git bottom neofetch ];
   }; 
   timezone = "Europe/London";

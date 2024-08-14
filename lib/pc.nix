@@ -12,6 +12,14 @@
       {
         imports = [] ++ (map (u: mkPCUser u system stateVersion pkgs) users);
 
+        boot.loader = {
+          efi.canTouchEfiVariables = true;
+          grub = {
+            device = "nodev";
+            efiSupport = true;
+          };
+        };
+
         networking = {
           hostName = "${hostname}";
           networkmanager.enable = true;

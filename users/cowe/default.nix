@@ -26,6 +26,7 @@
         git.enable = true;
         xdg.enable = true;
         aerc.enable = true;
+        packwiz.enable = true;
       };
 
       graphical = {

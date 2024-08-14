@@ -12,5 +12,6 @@
     ./neovim
     ./xdg
     ./aerc
+    ./packwiz
   ];
 }

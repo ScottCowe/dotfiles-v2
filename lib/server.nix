@@ -1,14 +1,16 @@
 { inputs, mkServerService, ... }:
 
 {
-  mkServerHost = { hostname, hostId, system, stateVersion, nixpkgs, 
+  mkServerHost = { hostname, hostId, system, stateVersion, pkgs, lib,
     services, networkInterfaces,
     unfreePackages ? [], extraConfig ? {}, timezone ? "Europe/London"
   }:
-  nixpkgs.lib.nixosSystem {
+  lib.nixosSystem {
     modules = [
       {
         nix.settings.experimental-features = [ "nix-command" "flakes" ];
+
+        nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (pkgs.lib.getName pkg) unfreePackages;
 
         system.stateVersion = "${stateVersion}";
 
@@ -46,7 +48,7 @@
           };
         };
 
-        nix.gs = {
+        nix.gc = {
           automatic = true;
           dates = "weekly";
           options = "--delete-older-than 1w";
@@ -54,7 +56,7 @@
 
         nix.settings.auto-optimise-store = true;
 
-        imports = [] ++ (map (s: mkServerService s nixpkgs) services);
+        imports = [] ++ (map (s: mkServerService s pkgs lib) services);
       }
 
       extraConfig
@@ -63,17 +65,16 @@
     ];
   };
 
-  mkServerService = { name, sudo ? false, authorizedSHHKeys ? [], extraConfig, ... }: nixpkgs:
+  mkServerService = { name, sudo ? false, authorizedSHHKeys ? [], extraConfig ? {} }: pkgs: lib:
   { 
     imports = [ extraConfig ];
-
+    
     users.users."${name}" = {
       name = name;
       isNormalUser = true;
       isSystemUser = false;
-      # extraGroups = [] ++ nixpkgs.lib.mkIf sudo [ "wheel" ];
       extraGroups = [ ] ++ (if sudo then [ "wheel" ] else []);
-      initialPassword = "password"; # TODO: Change to initialHashedPassword and use sops
+      initialPassword = "password";
       openssh.authorizedKeys.keys = authorizedSHHKeys;
     };
   };
