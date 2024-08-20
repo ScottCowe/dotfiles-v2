@@ -15,5 +15,8 @@ rec {
   unfreePackages = [
     "wootility"
   ];
-  extraConfig = { };
+  extraConfig = { 
+    services.fwupd.enable = true;
+  };
+  additionalModules = [ inputs.nixos-hardware.nixosModules.framework-13-7040-amd ];
 }

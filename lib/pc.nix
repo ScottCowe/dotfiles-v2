@@ -3,7 +3,8 @@
 {
   mkPCHost = { system, hostname, stateVersion, pkgs, users, 
     unfreePackages ? [], extraConfig ? {}, timezone ? "Europe/London", 
-    locale ? "en_US.UTF-8", consoleFont ? "Lat2-Terminus16", gpuType 
+    locale ? "en_US.UTF-8", consoleFont ? "Lat2-Terminus16", gpuType,
+    additionalModules ? []
   }:
   pkgs.lib.nixosSystem {
     specialArgs = { inherit inputs; };
@@ -58,7 +59,7 @@
       ../systems/${hostname}/hardware-configuration.nix
       
       inputs.home-manager.nixosModules.home-manager
-    ]; 
+    ] ++ additionalModules; 
   };
   
   mkPCUser = { name, groups, shell, colorScheme, 
