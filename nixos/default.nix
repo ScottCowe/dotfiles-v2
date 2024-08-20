@@ -10,5 +10,6 @@
     ./wooting
     ./podman
     ./nextcloud
+    ./bluetooth
   ];
 }

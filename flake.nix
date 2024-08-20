@@ -31,6 +31,7 @@
       desktop = utils.mkPCHost (import ./systems/desktop { inherit inputs; });
       iso-x86-64 = utils.mkISOSystem "x86_64-linux" inputs.nixpkgs;
       home-nas = utils.mkServerHost (import ./systems/home-nas { inherit inputs; });
+      framework = utils.mkPCHost (import ./systems/framework  { inherit inputs; });
     };
 
     deploy.nodes.home-nas = {
