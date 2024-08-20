@@ -31,7 +31,7 @@
           useDHCP = false;
           interfaces = networkInterfaces;
 
-          firewall.allowedTCPPorts = [ 22 ];
+          firewall.allowedTCPPorts = [ 22 80 443 ];
           defaultGateway = "192.168.1.1";
           nameservers = [ "8.8.8.8" ];
         };
@@ -65,16 +65,19 @@
     ];
   };
 
-  mkServerService = { name, sudo ? false, authorizedSHHKeys ? [], extraConfig ? {} }: pkgs: lib:
+  mkServerService = { name, password, sudo ? false, systemUser ? true, authorizedSHHKeys ? [], extraConfig ? {} }: pkgs: lib:
   { 
     imports = [ extraConfig ];
-    
+
+    users.groups."${name}" = lib.mkIf systemUser {};
+
     users.users."${name}" = {
       name = name;
-      isNormalUser = true;
-      isSystemUser = false;
+      group = lib.mkIf systemUser "${name}";
+      isNormalUser = !systemUser;
+      isSystemUser = systemUser;
       extraGroups = [ ] ++ (if sudo then [ "wheel" ] else []);
-      initialPassword = "password";
+      initialPassword = "${password}";
       openssh.authorizedKeys.keys = authorizedSHHKeys;
     };
   };

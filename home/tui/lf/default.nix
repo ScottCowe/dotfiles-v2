@@ -33,6 +33,7 @@ with lib; {
         dd = "delete";
         r = "rename";
         az = "zip";
+        at = "tar";
         ag = "targz";
         au = "unarchive";
 
@@ -71,6 +72,11 @@ with lib; {
         open = ''
           ''${{
           ${pkgs.bat}/bin/bat --paging=always --style=numbers,changes $f 
+          }}
+        '';
+        tar = ''
+          %{{
+          tar -cf $f.tar $f
           }}
         '';
         targz = ''

@@ -1,13 +1,14 @@
 {
-  name = "docker";
+  name = "nextcloud";
   password = "password";
   sudo = false; 
   authorizedSHHKeys = []; 
   extraConfig = {
     imports = [ ../../../nixos ];
 
-    config.podman.enable = true;
-    config.podman.nvidiaSupport = true;
-    config.podman.zshSupport = true;
+    config.nextcloud = {
+      enable = true;
+      adminPass = "Password123!";
+    };
   };
 }

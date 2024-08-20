@@ -9,5 +9,6 @@
     ./nvidia
     ./wooting
     ./podman
+    ./nextcloud
   ];
 }

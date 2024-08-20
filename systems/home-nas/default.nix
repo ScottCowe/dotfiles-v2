@@ -12,6 +12,7 @@ in rec {
   services = [ 
     (import ./services/admin.nix)        
     (import ./services/docker.nix)
+    (import ./services/nextcloud.nix)
   ]; 
   networkInterfaces = {
     enp5s0 = {

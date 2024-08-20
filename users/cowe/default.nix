@@ -38,6 +38,7 @@
         discord.enable = true;
         prismlauncher.enable = true;
         thunderbird.enable = true;
+        nextcloud.enable = false;
       };
     };
   };

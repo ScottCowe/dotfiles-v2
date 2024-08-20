@@ -15,5 +15,6 @@
     ./discord
     ./prismlauncher
     ./thunderbird
+    ./nextcloud
   ];
 }

@@ -10,7 +10,7 @@ with lib; {
   config = mkIf config.podman.enable {
     hardware.nvidia-container-toolkit.enable = config.podman.nvidiaSupport;
 
-    environment.systemPackages = with pkgs; [ slirp4netns ];
+    environment.systemPackages = with pkgs; [ slirp4netns docker-compose ];
 
     environment.extraInit = ''
       export DOCKER_HOST=unix:///run/user/$UID/podman/podman.sock
