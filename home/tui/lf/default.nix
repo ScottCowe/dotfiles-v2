@@ -6,7 +6,7 @@ with lib; {
   };
 
   config = mkIf config.tui.lf.enable {
-    home.packages = with pkgs; [ sshfs ];
+    home.packages = with pkgs; [ sshfs trashy ];
 
     home.file.".config/lf/icons".source = ./icons;
     home.file.".config/lf/colors".source = ./colors;
@@ -30,7 +30,7 @@ with lib; {
         O = "editor-open";
         md = "mkdir";
         mf = "mkfile";
-        dd = "delete";
+        dd = "trash";
         r = "rename";
         az = "zip";
         at = "tar";
@@ -60,6 +60,11 @@ with lib; {
         delete = ''
           %{{ 
           rm -r $f
+          }}
+        '';
+        trash = ''
+          %{{
+          ${pkgs.trashy}/bin/trash put $f
           }}
         '';
         rename = ''

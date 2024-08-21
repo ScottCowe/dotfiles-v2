@@ -17,6 +17,6 @@
     programs.zsh.enable = true;
     programs.dconf.enable = true;
 
-    environment.systemPackages = with pkgs; [ vim git ];
+    environment.systemPackages = with pkgs; [ vim git brightnessctl ];
   };
 }
