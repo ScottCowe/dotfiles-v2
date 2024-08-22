@@ -33,12 +33,14 @@
         gtk-qt.enable = true;
         firefox.enable = true;
         fonts.enable = true;
+        mako.enable = true;
+        rofi.enable = true;
         kitty.enable = true;
         easyeffects.enable = true;
         discord.enable = true;
-        prismlauncher.enable = true;
         thunderbird.enable = true;
         nextcloud.enable = false;
+        prismlauncher.enable = true;
       };
     };
   };

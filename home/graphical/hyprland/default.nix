@@ -1,4 +1,4 @@
-{ pkgs, lib, config, gpuType, ... }:
+{ pkgs, lib, config, inputs, gpuType, ... }:
 
 with lib; {
   options.graphical.hyprland = { 
@@ -9,9 +9,13 @@ with lib; {
     home.packages = with pkgs; [ 
       wl-clipboard
       grim slurp
+      hyprcursor
+      inputs.rose-pine-hyprcursor.packages.${pkgs.system}.default
     ]; 
 
-    home.sessionVariables = mkIf (gpuType == "nvidia") {
+    home.sessionVariables = {
+      HYPRCURSOR_THEME = "rose-pine-hyprcursor";
+    } // mkIf (gpuType == "nvidia") {
       LIBVA_DRIVER_NAME = "nvidia";
       XDG_SESSION_TYPE = "wayland";
       __GLX_VENDOR_LIBRARY_NAME = "nvidia";
@@ -101,6 +105,7 @@ with lib; {
       misc = {
         disable_hyprland_logo = true;
         disable_splash_rendering = true;
+        vfr = true;
       };
     };
   };

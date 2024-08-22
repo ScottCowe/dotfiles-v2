@@ -11,7 +11,7 @@
 
     modules = [
       {
-        imports = [] ++ (map (u: mkPCUser u system stateVersion pkgs) users);
+        imports = [ ] ++ (map (u: mkPCUser u system stateVersion pkgs) users);
 
         boot.loader = {
           efi.canTouchEfiVariables = true;

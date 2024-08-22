@@ -1,34 +1,23 @@
-{ pkgs, lib, config, ... }:
+{ inputs, pkgs, lib, config, ... }:
 
-with lib; {
+with lib; let
+  cfg = config.graphical.prismlauncher; 
+in {
   options.graphical.prismlauncher = { 
-    enable = mkOption {
-      type = types.bool;
-      default = false;
-      example = true;
-      description = mdDoc ''
-        Whether to enable prismlauncher 
-      '';
-    };
+    enable = mkEnableOption "PrismLauncher";
 
-    theme = mkOption {
-      type = types.nullOr types.path;
-      default = null;
-      example = literalExpression "some derivation";
-      description = mdDoc ''
-        What theme to use
-      '';
+    package = mkOption {
+      type = types.package;
+      default = pkgs.prismlauncher;
+      defaultText = literalExpression "pkgs.prismlauncher";
+      description = "The PrismLauncher package to install.";
     };
   };
 
-  config = mkIf config.graphical.prismlauncher.enable {
+  config = mkIf cfg.enable {
     home.packages = with pkgs; [
-      (prismlauncher.override {
-        jdks = [ jdk21 jdk17 jdk8 ];
-        additionalPrograms = [ alsa-oss ];
-      })
+      config.graphical.prismlauncher.package
+      mangohud
     ];
-
-    # home.file.".local/share/PrismLauncher/themes/Catppuccin-Mocha".source = config.gaming.prismlauncher.theme;
   };
 }

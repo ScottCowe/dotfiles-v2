@@ -22,6 +22,8 @@
     nix-colors.url = "github:misterio77/nix-colors";
 
     deploy-rs.url = "github:serokell/deploy-rs";
+    
+    rose-pine-hyprcursor.url = "github:ndom91/rose-pine-hyprcursor";
   };
 
   outputs = { self, ... }@inputs: 
