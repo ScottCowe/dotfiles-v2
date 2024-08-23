@@ -31,10 +31,10 @@
     nixosConfigurations = let 
       utils = (import ./lib { inherit inputs; });
     in {
-      hp-laptop = utils.mkPCHost (import ./systems/hp-laptop { inherit inputs; });
+      hp-laptop = utils.mkPCHost (import ./system/machines/hp-laptop { inherit inputs; });
       iso-x86-64 = utils.mkISOSystem "x86_64-linux" inputs.nixpkgs;
-      home-nas = utils.mkServerHost (import ./systems/home-nas { inherit inputs; });
-      framework = utils.mkPCHost (import ./systems/framework  { inherit inputs; });
+      home-nas = utils.mkServerHost (import ./system/machines/home-nas { inherit inputs; });
+      framework = utils.mkPCHost (import ./system/machines/framework  { inherit inputs; });
     };
 
     deploy.nodes.home-nas = {

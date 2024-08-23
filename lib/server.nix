@@ -61,7 +61,7 @@
 
       extraConfig
 
-      ../systems/${hostname}/hardware-configuration.nix
+      ../system/machines/${hostname}/hardware-configuration.nix
     ];
   };
 

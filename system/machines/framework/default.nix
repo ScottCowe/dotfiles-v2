@@ -10,7 +10,7 @@ rec {
   # consoleFont = "";
   gpuType = "amd";
   users = [
-    (import ../../users/cowe { inherit inputs system; })
+    (import ../../../home/users/cowe { inherit inputs system; })
   ];
   unfreePackages = [
     "wootility"

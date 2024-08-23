@@ -13,7 +13,7 @@
     "discord"
   ];
   extraConfig = {
-    imports = [ ../../home ];
+    imports = [ ../../modules ];
 
     config = {
       tui = {

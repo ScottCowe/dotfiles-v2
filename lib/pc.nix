@@ -55,8 +55,8 @@
 
       extraConfig
 
-      ../systems/${hostname}/config.nix
-      ../systems/${hostname}/hardware-configuration.nix
+      ../system/machines/${hostname}/config.nix
+      ../system/machines/${hostname}/hardware-configuration.nix
       
       inputs.home-manager.nixosModules.home-manager
     ] ++ additionalModules; 
@@ -93,7 +93,7 @@
       {
         imports = [
           inputs.nix-colors.homeManagerModules.default
-          ../home
+          ../home/modules
         ];
 
         config.colorScheme = colorScheme;

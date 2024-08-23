@@ -14,7 +14,7 @@ with lib; {
   };
 
   config = mkIf config.nextcloud.enable {
-    environment.etc."nextcloud-admin-pass".text = "${adminPass}"; 
+    environment.etc."nextcloud-admin-pass".text = "${config.nextcloud.adminPass}"; 
     services.nextcloud = {
       enable = true;
       package = pkgs.nextcloud29;

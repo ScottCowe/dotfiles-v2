@@ -1,7 +1,7 @@
 { pkgs, config, ... }:
 
 {
-  imports = [ ../../nixos ];
+  imports = [ ../../modules ];
   
   config = {
     pipewire.enable = true;

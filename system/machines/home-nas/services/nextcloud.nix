@@ -4,7 +4,7 @@
   sudo = false; 
   authorizedSHHKeys = []; 
   extraConfig = {
-    imports = [ ../../../nixos ];
+    imports = [ ../../../modules ];
 
     config.nextcloud = {
       enable = true;
