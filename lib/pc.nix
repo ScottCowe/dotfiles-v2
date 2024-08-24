@@ -96,18 +96,16 @@
           ../home/modules
         ];
 
-        config.colorScheme = colorScheme;
+        config = { 
+          colorScheme = colorScheme;
 
-        config.tui = pkgs.lib.mkIf (shell == "zsh") {
-          zsh.enable = true;
-        };
+          zsh.enable = shell == "zsh";
 
-        config.graphical = pkgs.lib.mkIf (wm == "hyprland") {
-          hyprland.enable = true;
-          wlogout.enable = true;
-          waybar.enable = true;
-          mako.enable = true;
-          rofi.enable = true;
+          hyprland.enable = wm == "hyprland";
+          wlogout.enable = wm == "hyprland";
+          waybar.enable = wm == "hyprland";
+          mako.enable = wm == "hyprland";
+          rofi.enable = wm == "hyprland";
         };
       }
     ];

@@ -22,19 +22,22 @@
     nix-colors.url = "github:misterio77/nix-colors";
 
     deploy-rs.url = "github:serokell/deploy-rs";
-    
-    rose-pine-hyprcursor.url = "github:ndom91/rose-pine-hyprcursor";
   };
 
   outputs = { self, ... }@inputs: 
   {
     nixosConfigurations = let 
-      utils = (import ./lib { inherit inputs; });
+      libx = (import ./lib { inherit inputs; });
     in {
-      hp-laptop = utils.mkPCHost (import ./system/machines/hp-laptop { inherit inputs; });
-      iso-x86-64 = utils.mkISOSystem "x86_64-linux" inputs.nixpkgs;
-      home-nas = utils.mkServerHost (import ./system/machines/home-nas { inherit inputs; });
-      framework = utils.mkPCHost (import ./system/machines/framework  { inherit inputs; });
+      # PCs
+      framework = libx.mkPCHost (import ./system/machines/framework  { inherit inputs; });
+      hp-laptop = libx.mkPCHost (import ./system/machines/hp-laptop { inherit inputs; });
+
+      # Servers
+      home-nas = libx.mkServerHost (import ./system/machines/home-nas { inherit inputs; });
+
+      # ISOs 
+      iso-x86-64 = libx.mkISOSystem "x86_64-linux" inputs.nixpkgs;
     };
 
     deploy.nodes.home-nas = {
