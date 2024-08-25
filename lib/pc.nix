@@ -88,7 +88,7 @@
         nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (pkgs.lib.getName pkg) unfreePackages;
       }
 
-      extraConfig
+      ../home/users/${name}/config.nix 
 
       {
         imports = [
@@ -106,6 +106,12 @@
           waybar.enable = wm == "hyprland";
           mako.enable = wm == "hyprland";
           rofi.enable = wm == "hyprland";
+
+          kitty.enable = terminal == "kitty";
+
+          firefox.enable = browser == "firefox";
+
+          lf.enable = fileBrowser == "lf";
         };
       }
     ];

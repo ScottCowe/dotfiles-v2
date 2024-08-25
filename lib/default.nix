@@ -14,4 +14,29 @@ rec {
 
   mkServerHost = server.mkServerHost;
   mkServerService = server.mkServerService;
+
+  mkHost = { hostname, nixpkgs, stateVersion, system, hostType, users }:
+  let
+    systemConfiguration = ../system/machines/${hostname}/config.nix;
+
+    pkgs = nixpkgs.legacyPackages.${system};
+    lib = nixpkgs.lib;
+
+    isPc = hostType == "pc";
+    isServer = hostType == "server";
+    isIso = hostType == "iso";
+  in nixpkgs.lib.nixosSystem {
+    specialArgs = { inherit inputs pkgs lib; };
+
+    modules = [
+      systemConfiguration
+    ];
+  };
+
+  mkUser = { username, groups, configDir }:
+  let
+
+  in {
+
+  };
 }
