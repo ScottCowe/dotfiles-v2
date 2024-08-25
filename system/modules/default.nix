@@ -9,7 +9,6 @@
     ./nvidia
     ./wooting
     ./podman
-    ./nextcloud
     ./bluetooth
   ];
 }

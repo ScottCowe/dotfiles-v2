@@ -11,8 +11,8 @@ in rec {
   lib = nixpkgs.lib;
   services = [ 
     (import ./services/admin.nix)        
-    (import ./services/docker.nix)
     (import ./services/nextcloud.nix { inherit pkgs; })
+    (import ./services/plex.nix)
   ]; 
   networkInterfaces = {
     enp5s0 = {
@@ -25,6 +25,7 @@ in rec {
   };
   unfreePackages = [
     "nvidia-x11"
+    "plexmediaserver"
   ];
   extraConfig = { 
     environment.systemPackages = with pkgs; [ vim git bottom neofetch ];
