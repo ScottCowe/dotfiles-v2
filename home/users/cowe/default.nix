@@ -11,5 +11,7 @@
   fileBrowser = "lf";
   unfreePackages = [
     "discord"
+    "steam"
+    "steam-original"
   ];
 }

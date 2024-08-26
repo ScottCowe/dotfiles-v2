@@ -25,10 +25,10 @@
   };
 
   outputs = { self, ... }@inputs: 
-  {
-    nixosConfigurations = let 
-      libx = (import ./lib { inherit inputs; });
-    in {
+  let
+    libx = (import ./lib { inherit inputs; });
+  in {
+    nixosConfigurations = {
       # PCs
       framework = libx.mkPCHost (import ./system/machines/framework  { inherit inputs; });
       hp-laptop = libx.mkPCHost (import ./system/machines/hp-laptop { inherit inputs; });
@@ -38,6 +38,10 @@
 
       # ISOs 
       iso-x86-64 = libx.mkISOSystem "x86_64-linux" inputs.nixpkgs;
+    };
+
+    homeConfigurations = {
+
     };
 
     deploy.nodes.home-nas = {

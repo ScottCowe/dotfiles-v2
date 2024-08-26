@@ -15,9 +15,11 @@ rec {
   mkServerHost = server.mkServerHost;
   mkServerService = server.mkServerService;
 
-  mkHost = { hostname, nixpkgs, stateVersion, system, hostType, users }:
+  mkHost = { hostname, nixpkgs, stateVersion, system, hostType, users, additionalModules }:
   let
     systemConfiguration = ../system/machines/${hostname}/config.nix;
+    hardwareConfiguration = ../system/machines/${hostname}/hardware.nix;
+    filesystemConfiguration = ../system/machines/${hostname}/filesystem.nix;
 
     pkgs = nixpkgs.legacyPackages.${system};
     lib = nixpkgs.lib;
@@ -30,13 +32,27 @@ rec {
 
     modules = [
       systemConfiguration
-    ];
+      hardwareConfiguration
+      filesystemConfiguration
+    ] ++ additionalModules;
   };
 
-  mkUser = { username, groups, configDir }:
-  let
+  mkUser = { username, groups, normalUser ? true, userConfiguration }: pkgs:
+  {
+    users.users."${username}" = {
+      name = username;
+      isNormalUser = normalUser;
+      isSystemUser = !normalUser;
+      extraGroups = groups;
+      initialPassword = "password";
+      shell = pkgs.zsh;
+    };
+  };
 
-  in {
+  mkHome = { username, homeConfiguration }:
+  inputs.home-manager.lib.homeManagerConfiguration {
+    extraSpecialArgs = {};
 
+    modules = [];
   };
 }

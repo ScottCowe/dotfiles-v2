@@ -21,5 +21,9 @@
     thunderbird.enable = true;
     prismlauncher.enable = true;
     neofetch.enable = true;
+    
+    modules = {
+      lutris.enable = true;
+    };
   };
 }

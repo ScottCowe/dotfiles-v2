@@ -26,5 +26,6 @@
     ./wlogout
     ./xdg
     ./zsh
+    ./lutris
   ];
 }
