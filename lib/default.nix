@@ -15,13 +15,13 @@ rec {
   mkServerHost = server.mkServerHost;
   mkServerService = server.mkServerService;
 
-  mkHost = { hostname, nixpkgs, stateVersion, system, hostType, users, additionalModules }:
+  mkHost = { hostname, nixpkgs, stateVersion, system, hostType, users, additionalModules, overlays ? [] }:
   let
     systemConfiguration = ../system/machines/${hostname}/config.nix;
     hardwareConfiguration = ../system/machines/${hostname}/hardware.nix;
     filesystemConfiguration = ../system/machines/${hostname}/filesystem.nix;
 
-    pkgs = nixpkgs.legacyPackages.${system};
+    pkgs = import nixpkgs { inherit system overlays; };
     lib = nixpkgs.lib;
 
     isPc = hostType == "pc";
@@ -37,15 +37,16 @@ rec {
     ] ++ additionalModules;
   };
 
-  mkUser = { username, groups, normalUser ? true, userConfiguration }: pkgs:
+  mkUser = { username, group ? username, extraGroups, normalUser ? true }: pkgs:
   {
     users.users."${username}" = {
       name = username;
+      group = if normalUser then "users" else group;
       isNormalUser = normalUser;
       isSystemUser = !normalUser;
-      extraGroups = groups;
+      extraGroups = extraGroups;
       initialPassword = "password";
-      shell = pkgs.zsh;
+      shell = pkgs.fish;
     };
   };
 
@@ -53,6 +54,8 @@ rec {
   inputs.home-manager.lib.homeManagerConfiguration {
     extraSpecialArgs = {};
 
-    modules = [];
+    modules = [
+      homeConfiguration
+    ];
   };
 }

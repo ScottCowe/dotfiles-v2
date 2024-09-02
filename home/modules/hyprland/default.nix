@@ -23,6 +23,13 @@ with lib; {
       xwayland.enable = true;
     };
 
+    wayland.windowManager.hyprland.extraConfig = ''
+      # Given up on trying to get peggle to work (for now)
+      # windowrule = size 640 480, ^(steam_app_3480)$ 
+      # windowrule = maximize, ^(steam_app_3480)$  
+      # windowrule = fullscreenstate 0 0, ^(steam_app_3480)$  
+    '';
+
     wayland.windowManager.hyprland.settings = {
       "$mod" = "SUPER";
 
@@ -30,7 +37,7 @@ with lib; {
 
       # To fix ghost monitor issue, apparantly a kernel/driver bug
       "monitor" = "Unknown-1,disable";
-
+        
       bind = [
         "$mod, M, exec, wlogout"
         "$mod, Return, exec, kitty"

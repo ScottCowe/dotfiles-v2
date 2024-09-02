@@ -1,5 +1,6 @@
 {
   name = "plex";
+  additionalGroups = [ "shared" ];
   password = "password";
   sudo = false; 
   systemUser = true;

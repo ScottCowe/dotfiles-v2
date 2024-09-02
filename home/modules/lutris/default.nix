@@ -8,6 +8,6 @@ in {
   };
 
   config = mkIf cfg.enable {
-    home.packages = with pkgs; [ lutris ]; 
+    home.packages = with pkgs; [ lutris adwaita-icon-theme libva ]; 
   };
 }

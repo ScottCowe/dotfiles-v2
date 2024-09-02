@@ -24,6 +24,9 @@
     
     modules = {
       lutris.enable = true;
+      steam.enable = true;
+      jetbrains.idea.enable = true;
+      libreoffice.enable = true;
     };
   };
 }

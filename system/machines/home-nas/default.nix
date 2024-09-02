@@ -26,6 +26,7 @@ in rec {
   unfreePackages = [
     "nvidia-x11"
     "plexmediaserver"
+    "minecraft-server"
   ];
   extraConfig = { 
     environment.systemPackages = with pkgs; [ vim git bottom neofetch ];

@@ -65,7 +65,7 @@
     ];
   };
 
-  mkServerService = { name, password, sudo ? false, systemUser ? true, authorizedSHHKeys ? [], extraConfig ? {} }: pkgs: lib:
+  mkServerService = { name, additionalGroups ? [], password, sudo ? false, systemUser ? true, authorizedSHHKeys ? [], extraConfig ? {} }: pkgs: lib:
   { 
     imports = [ extraConfig ];
 
@@ -76,7 +76,7 @@
       group = lib.mkIf systemUser "${name}";
       isNormalUser = !systemUser;
       isSystemUser = systemUser;
-      extraGroups = [ ] ++ (if sudo then [ "wheel" ] else []);
+      extraGroups = additionalGroups ++ (if sudo then [ "wheel" ] else []);
       initialPassword = "${password}";
       openssh.authorizedKeys.keys = authorizedSHHKeys;
     };

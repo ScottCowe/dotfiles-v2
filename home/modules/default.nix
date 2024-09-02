@@ -27,5 +27,8 @@
     ./xdg
     ./zsh
     ./lutris
+    ./steam
+    ./jetbrains
+    ./libreoffice
   ];
 }
