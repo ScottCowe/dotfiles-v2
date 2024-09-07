@@ -8,6 +8,7 @@
     kanata.enable = true;
     wooting.enable = true;
     bluetooth.enable = true;
+    tailscale.enable = true;
 
     hardware.graphics = {
       enable = true;

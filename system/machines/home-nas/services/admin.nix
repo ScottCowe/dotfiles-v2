@@ -9,5 +9,7 @@
   ]; 
   extraConfig = {
     users.groups."shared" = {};
+
+    services.tailscale.enable = true;
   };
 }

@@ -15,20 +15,17 @@ rec {
   mkServerHost = server.mkServerHost;
   mkServerService = server.mkServerService;
 
-  mkHost = { hostname, nixpkgs, stateVersion, system, hostType, users, additionalModules, overlays ? [] }:
+  mkHost = { hostname, nixpkgs, stateVersion, system, users, additionalModules ? [], overlays ? [] }:
   let
     systemConfiguration = ../system/machines/${hostname}/config.nix;
     hardwareConfiguration = ../system/machines/${hostname}/hardware.nix;
     filesystemConfiguration = ../system/machines/${hostname}/filesystem.nix;
 
+  in nixpkgs.lib.nixosSystem {
+    specialArgs = { inherit inputs; };
+
     pkgs = import nixpkgs { inherit system overlays; };
     lib = nixpkgs.lib;
-
-    isPc = hostType == "pc";
-    isServer = hostType == "server";
-    isIso = hostType == "iso";
-  in nixpkgs.lib.nixosSystem {
-    specialArgs = { inherit inputs pkgs lib; };
 
     modules = [
       systemConfiguration
@@ -50,12 +47,16 @@ rec {
     };
   };
 
-  mkHome = { username, homeConfiguration }:
-  inputs.home-manager.lib.homeManagerConfiguration {
-    extraSpecialArgs = {};
+  mkHome = { username, homeConfiguration, nixpkgs, additionalModules ? [] }:
+  inputs.flake-utils.lib.eachDefaultSystem (system:
+    inputs.home-manager.lib.homeManagerConfiguration {
+      extraSpecialArgs = {};
 
-    modules = [
-      homeConfiguration
-    ];
-  };
+      pkgs = import nixpkgs { inherit system; };
+
+      modules = [
+        homeConfiguration
+      ] ++ additionalModules;
+    }
+  );
 }
