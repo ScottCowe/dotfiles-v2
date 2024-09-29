@@ -1,11 +1,13 @@
 { lib, config, ... }:
 
-with lib; {
-  options.wlogout = { 
+with lib; let
+  cfg = config.modules.wlogout; 
+in {
+  options.modules.wlogout = { 
     enable = mkEnableOption "wlogout"; 
   };
 
-  config = mkIf config.wlogout.enable {
+  config = mkIf cfg.enable {
     programs.wlogout = {
       enable = true;
       

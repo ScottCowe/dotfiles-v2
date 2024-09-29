@@ -1,11 +1,13 @@
 { lib, config, ... }:
 
-with lib; {
-  options.zsh = {
+with lib; let
+  cfg = config.modules.zsh;
+in {
+  options.modules.zsh = {
     enable = mkEnableOption "zsh"; 
   };
 
-  config = mkIf config.zsh.enable {
+  config = mkIf cfg.enable {
     programs.zsh = {
       enable = true;
       enableCompletion = true;

@@ -1,11 +1,13 @@
 { lib, config, ... }:
 
-with lib; {
-  options.xdg-module = {
+with lib; let
+  cfg = config.modules.xdg; 
+in {
+  options.modules.xdg = {
     enable = mkEnableOption "xdg";
   };
 
-  config = mkIf config.xdg-module.enable {
+  config = mkIf cfg.enable {
     xdg = {
       userDirs = {
         enable = true;

@@ -1,13 +1,14 @@
 { lib, config, pkgs, inputs, ... }:
 
 with lib; let
+  cfg = config.modules.bat;
   inherit (inputs.nix-colors.lib-contrib { inherit pkgs; }) textMateThemeFromScheme;
 in {
-  options.bat = {
+  options.modules.bat = {
     enable = mkEnableOption "bat";
   };
 
-  config = mkIf config.bat.enable {
+  config = mkIf cfg.enable {
     programs.bat = {
       enable = true;
 

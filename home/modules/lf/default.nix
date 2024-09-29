@@ -1,11 +1,13 @@
 { lib, config, pkgs, ... }:
 
-with lib; {
-  options.lf = { 
+with lib; let
+  cfg = config.modules.lf;
+in {
+  options.modules.lf = { 
     enable = mkEnableOption "lf"; 
   };
 
-  config = mkIf config.lf.enable {
+  config = mkIf cfg.enable {
     home.packages = with pkgs; [ sshfs trashy ];
 
     home.file.".config/lf/icons".source = ./icons;
@@ -76,7 +78,7 @@ with lib; {
         '';
         open = ''
           ''${{
-          ${pkgs.bat}/bin/bat --paging=always --style=numbers,changes $f 
+          ${pkgs.bat}/bin/bat --paging=always --style=numbers,changes "$f"
           }}
         '';
         tar = ''
@@ -121,7 +123,7 @@ with lib; {
               exit 1
           fi
        
-          ${pkgs.bat}/bin/bat --paging=always --style=plain --color=always $file
+          ${pkgs.bat}/bin/bat --paging=always --style=plain --color=always "$file"
         '';
 
         cleaner = pkgs.writeShellScriptBin "clean.sh" ''

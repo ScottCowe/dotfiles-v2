@@ -30,5 +30,6 @@
     ./steam
     ./jetbrains
     ./libreoffice
+    ./rstudio
   ];
 }

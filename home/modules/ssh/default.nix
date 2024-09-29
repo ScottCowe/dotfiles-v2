@@ -1,11 +1,13 @@
 { lib, config, ... }:
 
-with lib; {
-  options.ssh = {
+with lib; let
+  cfg = config.modules.ssh;
+in {
+  options.modules.ssh = {
     enable = mkEnableOption "ssh";
   };
 
-  config = mkIf config.ssh.enable {
+  config = mkIf cfg.enable {
     programs.ssh = {
       enable = true;
       addKeysToAgent = "yes";

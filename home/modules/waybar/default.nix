@@ -1,11 +1,13 @@
 { lib, config, ... }:
 
-with lib; {
-  options.waybar = { 
+with lib; let 
+  cfg = config.modules.waybar;
+in {
+  options.modules.waybar = { 
     enable = mkEnableOption "waybar"; 
   };
 
-  config = mkIf config.waybar.enable {
+  config = mkIf cfg.enable {
     programs.waybar = {
       enable = true;
 

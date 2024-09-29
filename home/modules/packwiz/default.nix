@@ -1,11 +1,13 @@
 { lib, config, pkgs, ... }:
 
-with lib; {
-  options.packwiz = {
+with lib; let
+  cfg = config.modules.packwiz;
+in {
+  options.modules.packwiz = {
     enable = mkEnableOption "packwiz";
   };
 
-  config = mkIf config.packwiz.enable {
+  config = mkIf cfg.enable {
     home.packages = with pkgs; [ packwiz ];
   };
 }

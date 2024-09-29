@@ -98,20 +98,6 @@
 
         config = { 
           colorScheme = colorScheme;
-
-          zsh.enable = shell == "zsh";
-
-          hyprland.enable = wm == "hyprland";
-          wlogout.enable = wm == "hyprland";
-          waybar.enable = wm == "hyprland";
-          mako.enable = wm == "hyprland";
-          rofi.enable = wm == "hyprland";
-
-          kitty.enable = terminal == "kitty";
-
-          firefox.enable = browser == "firefox";
-
-          lf.enable = fileBrowser == "lf";
         };
       }
     ];

@@ -1,11 +1,13 @@
 { lib, config, pkgs, inputs, ... }:
 
-with lib; {
-  options.firefox = { 
+with lib; let
+  cfg = config.modules.firefox; 
+in {
+  options.modules.firefox = { 
     enable = mkEnableOption "firefox"; 
   };
 
-  config = mkIf config.firefox.enable {
+  config = mkIf cfg.enable {
     programs.firefox = {
       enable = true;
 
@@ -52,7 +54,7 @@ with lib; {
             "Wikipedia (en)".metaData.alias = "@wiki";
             "eBay".metaData.alias = "@ebay";
             "Google".metaData.hidden = true;
-            "Amazon.com".metaData.hidden = true;
+            "Amazon.com".metaData.hidden = "@az";
             "Bing".metaData.hidden = true;
           };
         };

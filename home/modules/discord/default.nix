@@ -1,11 +1,13 @@
 { lib, config, pkgs, ... }:
 
-with lib; {
-  options.discord = {
+with lib; let
+  cfg = config.modules.discord;
+in {
+  options.modules.discord = {
     enable = mkEnableOption "discord";
   };
 
-  config = mkIf config.discord.enable {
+  config = mkIf cfg.enable {
     home.packages = with pkgs; [
       (discord.override {
         withOpenASAR = true;

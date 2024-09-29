@@ -1,11 +1,13 @@
 { pkgs, lib, config, gpuType, ... }:
 
-with lib; {
-  options.hyprland = { 
+with lib; let
+  cfg = config.modules.hyprland;
+in {
+  options.modules.hyprland = { 
     enable = mkEnableOption "hyprland";
   };
 
-  config = mkIf config.hyprland.enable {
+  config = mkIf cfg.enable {
     home.packages = with pkgs; [ 
       wl-clipboard
       grim slurp

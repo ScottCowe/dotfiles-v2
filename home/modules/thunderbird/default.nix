@@ -1,11 +1,13 @@
 { lib, config, name, ... }:
 
-with lib; {
-  options.thunderbird = {
+with lib; let 
+  cfg = config.modules.thunderbird;
+in {
+  options.modules.thunderbird = {
     enable = mkEnableOption "thunderbird";
   };
 
-  config = mkIf config.thunderbird.enable {
+  config = mkIf cfg.enable {
     programs.thunderbird = {
       enable = true;
 

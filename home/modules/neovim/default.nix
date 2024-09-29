@@ -1,11 +1,13 @@
 { lib, config, inputs, pkgs, ... }:
 
-with lib; {
-  options.neovim = {
+with lib; let
+  cfg = config.modules.neovim;
+in {
+  options.modules.neovim = {
     enable = mkEnableOption "neovim";
   };
 
-  config = mkIf config.neovim.enable {
+  config = mkIf cfg.enable {
     home.packages = [ 
       (inputs.nixvim-flake.packages."${pkgs.system}".default.extend {
         colorschemes.base16 = {

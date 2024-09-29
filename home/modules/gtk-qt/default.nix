@@ -1,13 +1,14 @@
 { lib, config, inputs, pkgs, ... }:
 
 with lib; let
+  cfg = config.modules.gtk-qt;
   inherit (inputs.nix-colors.lib-contrib { inherit pkgs; }) gtkThemeFromScheme;
 in {
-  options.gtk-qt = {
+  options.modules.gtk-qt = {
     enable = mkEnableOption "gtk-qt";
   };
 
-  config = mkIf config.gtk-qt.enable {  
+  config = mkIf cfg.enable {  
     gtk = {
       enable = true;
 

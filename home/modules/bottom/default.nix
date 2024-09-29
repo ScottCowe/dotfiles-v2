@@ -1,11 +1,13 @@
 { lib, config, ... }:
 
-with lib; {
-  options.bottom = {
+with lib; let
+  cfg = config.modules.bottom;
+in {
+  options.modules.bottom = {
     enable = mkEnableOption "bottom";
   };
 
-  config = mkIf config.bottom.enable {
+  config = mkIf cfg.enable {
     programs.bottom = {
       enable = true;
     };

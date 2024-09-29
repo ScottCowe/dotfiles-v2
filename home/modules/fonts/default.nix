@@ -1,11 +1,13 @@
 { lib, config, pkgs, ... }:
 
-with lib; {
-  options.fonts = {
+with lib; let
+  cfg = config.modules.fonts; 
+in {
+  options.modules.fonts = {
     enable = mkEnableOption "fonts";
   };
 
-  config = mkIf config.fonts.enable {
+  config = mkIf cfg.enable {
     fonts.fontconfig.enable = true;
     home.packages = with pkgs; [
       noto-fonts

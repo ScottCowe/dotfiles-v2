@@ -24,8 +24,6 @@
     nix-colors.url = "github:misterio77/nix-colors";
 
     deploy-rs.url = "github:serokell/deploy-rs";
-
-    nix-minecraft.url = "github:Infinidoge/nix-minecraft";
   };
 
   outputs = { self, ... }@inputs: 

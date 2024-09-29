@@ -1,11 +1,13 @@
 { lib, config, ... }:
 
-with lib; {
-  options.eza = {
+with lib; let
+  cfg = config.modules.eza;
+in {
+  options.modules.eza = {
     enable = mkEnableOption "eza";
   };
 
-  config = mkIf config.eza.enable {
+  config = mkIf cfg.enable {
     home.shellAliases."ls" = "eza -la --icons=always";
 
     programs.eza = {

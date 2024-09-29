@@ -1,9 +1,9 @@
 { pkgs, lib, config, ... }:
 
 with lib; let
-  cfg = config.prismlauncher; 
+  cfg = config.modules.prismlauncher; 
 in {
-  options.prismlauncher = { 
+  options.modules.prismlauncher = { 
     enable = mkEnableOption "PrismLauncher";
 
     package = mkOption {
