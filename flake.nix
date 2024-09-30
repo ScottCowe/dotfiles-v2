@@ -39,7 +39,7 @@
       home-nas = libx.mkServerHost (import ./system/machines/home-nas { inherit inputs; });
 
       # ISOs 
-      iso-x86-64 = libx.mkISOSystem "x86_64-linux" inputs.nixpkgs;
+      iso-x86-64 = libx.mkHost (import ./system/machines/iso-x86-64 { inherit inputs; });
     };
 
     homeConfigurations = {
