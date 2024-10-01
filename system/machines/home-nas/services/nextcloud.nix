@@ -14,7 +14,7 @@
         package = pkgs.nextcloud29;
         hostName = "localhost";
         config.adminpassFile = "/etc/nextcloud-admin-pass";
-        settings.trusted_domains = [ "localhost" "192.168.1.2" ];
+        settings.trusted_domains = [ "localhost" "192.168.1.2" "100.66.112.52" ];
         maxUploadSize = "1000G";
       };
 

@@ -47,7 +47,7 @@
     };
 
     deploy.nodes.home-nas = {
-      hostname = "192.168.1.2";
+      hostname = "100.66.112.52";
       fastConnection = true;
       interactiveSudo = true;
       remoteBuild = true;
