@@ -61,19 +61,19 @@ in {
         '';
         delete = ''
           %{{ 
-          rm -r $f
+          rm -r "$f"
           }}
         '';
         trash = ''
           %{{
-          ${pkgs.trashy}/bin/trash put $f
+          ${pkgs.trashy}/bin/trash put "$f"
           }}
         '';
         rename = ''
           %{{
           printf "New name: "
           read NAME 
-          mv $f $NAME
+          mv "$f" "$NAME"
           }}
         '';
         open = ''
@@ -83,17 +83,17 @@ in {
         '';
         tar = ''
           %{{
-          tar -cf $f.tar $f
+          tar -cf $f.tar "$f"
           }}
         '';
         targz = ''
           %{{
-          tar -czf $f.tar.gz $f
+          tar -czf $f.tar.gz "$f"
           }}
         '';
         zip = ''
           %{{
-          ${pkgs.zip}/bin/zip -r $f.zip $f
+          ${pkgs.zip}/bin/zip -r $f.zip "$f"
           }}
         '';
         unarchive = ''

@@ -3,7 +3,6 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
-    nixpkgs-24-05.url = "github:nixos/nixpkgs/nixos-24.05";
     
     flake-utils.url = "github:numtide/flake-utils";
 
@@ -34,6 +33,7 @@
       # PCs
       framework = libx.mkPCHost (import ./system/machines/framework  { inherit inputs; });
       hp-laptop = libx.mkPCHost (import ./system/machines/hp-laptop { inherit inputs; });
+      hp = libx.mkHost (import ./system/machines/hp { inherit inputs; });
 
       # Servers
       home-nas = libx.mkServerHost (import ./system/machines/home-nas { inherit inputs; });
@@ -43,7 +43,7 @@
     };
 
     homeConfigurations = {
-
+      
     };
 
     deploy.nodes.home-nas = {

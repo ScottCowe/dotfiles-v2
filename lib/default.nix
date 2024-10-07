@@ -13,52 +13,36 @@ rec {
   mkServerHost = server.mkServerHost;
   mkServerService = server.mkServerService;
 
-  mkHost = { hostname, nixpkgs, stateVersion, system, users ? [], additionalModules ? [], overlays ? [], 
-    systemConfiguration ? {}, hardwareConfiguration ? {}, filesystemConfiguration ? {}
-  }:
+  mkHost = { hostname, nixpkgs, stateVersion, system, modules ? [], overlays ? [], ...}:
   nixpkgs.lib.nixosSystem {
     specialArgs = { inherit inputs; };
 
     pkgs = import nixpkgs { inherit system overlays; };
     lib = nixpkgs.lib;
 
-    modules = [
-      {
-        imports = [] ++ users;
-      }
-      systemConfiguration
-      hardwareConfiguration
-      filesystemConfiguration
-    ] ++ additionalModules;
+    modules = modules;
   };
 
-  mkUser = { username, group ? username, extraGroups, normalUser ? true, nixpkgs, overlays }:
-  inputs.flake-utils.lib.eachDefaultSystem (system:
-    let
-      pkgs = import nixpkgs { inherit system overlays; };
-    in {
-      users.users."${username}" = {
-        name = username;
-        group = if normalUser then "users" else group;
-        isNormalUser = normalUser;
-        isSystemUser = !normalUser;
-        extraGroups = extraGroups;
-        initialPassword = "password";
-        shell = pkgs.fish;
-      };
-    }
-  );
+  
+  mkUser = { username, group ? username, extraGroups ? [], normalUser ? true, ... }: pkgs:
+  {
+    users.users."${username}" = {
+      name = username;
+      group = if normalUser then "users" else group;
+      isNormalUser = normalUser;
+      isSystemUser = !normalUser;
+      extraGroups = extraGroups;
+      initialPassword = "password";
+      shell = pkgs.fish;
+    };
 
-  mkHome = { username, homeConfiguration, nixpkgs, additionalModules ? [] }:
-  inputs.flake-utils.lib.eachDefaultSystem (system:
-    inputs.home-manager.lib.homeManagerConfiguration {
-      extraSpecialArgs = {};
+    programs.fish.enable = true;
+  };
 
-      pkgs = import nixpkgs { inherit system; };
+  mkHome = { username, modules ? [] }:
+  inputs.home-manager.lib.homeManagerConfiguration {
+    extraSpecialArgs = {};
 
-      modules = [
-        homeConfiguration
-      ] ++ additionalModules;
-    }
-  );
+    modules = modules;
+  };
 }
