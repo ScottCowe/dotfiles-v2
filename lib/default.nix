@@ -33,10 +33,8 @@ rec {
       isSystemUser = !normalUser;
       extraGroups = extraGroups;
       initialPassword = "password";
-      shell = pkgs.fish;
+      shell = pkgs.bash;
     };
-
-    programs.fish.enable = true;
   };
 
   mkHome = { username, stateVersion, modules ? [], ... }:
