@@ -39,10 +39,14 @@ rec {
     programs.fish.enable = true;
   };
 
-  mkHome = { username, modules ? [] }:
-  inputs.home-manager.lib.homeManagerConfiguration {
-    extraSpecialArgs = {};
+  mkHome = { username, stateVersion, modules ? [], ... }:
+  {
+    home-manager.users."${username}" = {
+      home.stateVersion = "${stateVersion}";
+      home.username = "${username}";
+      home.homeDirectory = "/home/${username}";
 
-    modules = modules;
+      imports = modules;
+    };
   };
 }

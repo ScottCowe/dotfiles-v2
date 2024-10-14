@@ -12,5 +12,8 @@ rec {
     ./filesystem.nix
 
     (import ../../../home/users/test { inherit inputs nixpkgs system overlays; })
+    (import ../../../home/users/test/home.nix { inherit inputs stateVersion; })
+
+    inputs.home-manager.nixosModules.home-manager
   ];
 }

@@ -32,7 +32,6 @@
     nixosConfigurations = {
       # PCs
       framework = libx.mkPCHost (import ./system/machines/framework  { inherit inputs; });
-      hp-laptop = libx.mkPCHost (import ./system/machines/hp-laptop { inherit inputs; });
       hp = libx.mkHost (import ./system/machines/hp { inherit inputs; });
 
       # Servers
