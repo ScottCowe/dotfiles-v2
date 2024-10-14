@@ -5,5 +5,7 @@ let
 in libx.mkHome {
   username = "test";
   stateVersion = stateVersion;
-  modules = [ ];
+  modules = [ 
+    ./modules/eza.nix 
+  ];
 } 
