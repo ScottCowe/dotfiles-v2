@@ -11,5 +11,8 @@ in libx.mkHome {
     ./modules/hyprland.nix 
     ./modules/kitty.nix 
     ./modules/wlogout.nix
+    {
+      programs.bat.enable = true;
+    }
   ];
 } 
