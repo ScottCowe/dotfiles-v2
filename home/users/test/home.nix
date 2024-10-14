@@ -8,5 +8,8 @@ in libx.mkHome {
   modules = [ 
     ./modules/fish.nix
     ./modules/eza.nix 
+    ./modules/hyprland.nix 
+    ./modules/kitty.nix 
+    ./modules/wlogout.nix
   ];
 } 
