@@ -39,6 +39,10 @@ rec {
 
   mkHome = { username, stateVersion, modules ? [], ... }:
   {
+    home-manager.extraSpecialArgs = {
+      inherit inputs;
+    };	
+
     home-manager.users."${username}" = {
       home.stateVersion = "${stateVersion}";
       home.username = "${username}";

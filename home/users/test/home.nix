@@ -14,5 +14,13 @@ in libx.mkHome {
     {
       programs.bat.enable = true;
     }
+    ./modules/lf
+    {
+      services.mako = {
+        enable = true;
+        defaultTimeout = 5000;
+      };
+    }
+    ./modules/neovim.nix
   ];
 } 
