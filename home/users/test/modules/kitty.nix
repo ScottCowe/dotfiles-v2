@@ -5,8 +5,8 @@
     enable = true;
 
     font =  {
-      name = "FiraCode Nerd Font";
-      package = (pkgs.nerdfonts.override { fonts = [ "FiraCode" ]; });
+    #   name = "FiraCode Nerd Font";
+    #   package = (pkgs.nerdfonts.override { fonts = [ "FiraCode" ]; });
       size = 12;
     };
 

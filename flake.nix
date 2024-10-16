@@ -23,6 +23,8 @@
     nix-colors.url = "github:misterio77/nix-colors";
 
     deploy-rs.url = "github:serokell/deploy-rs";
+
+    stylix.url = "github:danth/stylix";
   };
 
   outputs = { self, ... }@inputs: 

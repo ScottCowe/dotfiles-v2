@@ -22,5 +22,9 @@ in libx.mkHome {
       };
     }
     ./modules/neovim.nix
+
+    ./modules/stylix
+
+    inputs.stylix.homeManagerModules.stylix
   ];
 } 
