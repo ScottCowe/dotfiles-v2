@@ -19,17 +19,17 @@
   wayland.windowManager.hyprland.settings = {
     "$mod" = "SUPER";
 
-    # "exec-once" = "waybar";
+    "exec-once" = "waybar";
       
     bind = [
       "$mod, M, exec, wlogout"
       "$mod, Return, exec, kitty"
       "$mod SHIFT, Q, killactive"
       "$mod, E, exec, kitty lf"
-      # "$mod, D, exec, rofi -show drun"
+      "$mod, D, exec, rofi -show drun"
       "$mod, F, fullscreen"
       ''$mod, S, exec, grim -g "$(slurp -w 0)" - | wl-copy --type image/png''
-      # "$mod, B, exec, firefox"
+      "$mod, B, exec, firefox"
 
       "$mod, h, movefocus, l"
       "$mod, j, movefocus, d"

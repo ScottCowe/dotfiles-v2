@@ -26,5 +26,9 @@ in libx.mkHome {
     ./modules/stylix
 
     inputs.stylix.homeManagerModules.stylix
+
+    ./modules/firefox.nix
+    ./modules/rofi
+    ./modules/waybar
   ];
 } 
