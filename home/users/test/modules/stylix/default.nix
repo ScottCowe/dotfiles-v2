@@ -18,8 +18,8 @@
     };
 
     monospace = {
-      package = pkgs.dejavu_fonts;
-      name = "DejaVu Sans Mono";
+      package = (pkgs.nerdfonts.override { fonts = [ "FiraCode" ]; });
+      name = "FiraCode Nerd Font";
     };
 
     emoji = {

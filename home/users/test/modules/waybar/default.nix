@@ -2,6 +2,10 @@
   programs.waybar = {
     enable = true;
 
+    style = ''
+
+    '';
+
     settings = {
       bar = {
         "layer" = "top";
