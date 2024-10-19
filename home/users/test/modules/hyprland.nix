@@ -30,6 +30,7 @@
       "$mod, F, fullscreen"
       ''$mod, S, exec, grim -g "$(slurp -w 0)" - | wl-copy --type image/png''
       "$mod, B, exec, firefox"
+      "$mod, C, exec, rofi -show calc -modi calc -no-show-match -no-sort"
 
       "$mod, h, movefocus, l"
       "$mod, j, movefocus, d"
