@@ -3,7 +3,39 @@
     enable = true;
 
     style = ''
+      #workspaces {
+        margin-right: 8px;
+        border-radius: 10px;
+        transition: none;
+        background: #383c4a;
+      }
 
+      #workspaces button {
+          transition: none;
+          color: #7c818c;
+          background: transparent;
+          padding: 5px;
+          font-size: 18px;
+      }
+
+      #workspaces button.persistent {
+          color: #7c818c;
+          font-size: 12px;
+      }
+
+      /* https://github.com/Alexays/Waybar/wiki/FAQ#the-workspace-buttons-have-a-strange-hover-effect */
+      #workspaces button:hover {
+          transition: none;
+          box-shadow: inherit;
+          text-shadow: inherit;
+          border-radius: inherit;
+          color: #383c4a;
+          background: #7c818c;
+      }
+
+      #workspaces button.focused {
+          color: white;
+      } 
     '';
 
     settings = {

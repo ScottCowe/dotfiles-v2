@@ -29,6 +29,6 @@ in libx.mkHome {
 
     ./modules/firefox.nix
     ./modules/rofi
-    ./modules/waybar
+    ./modules/waybar.nix
   ];
 } 
