@@ -9,11 +9,13 @@ rec {
   modules = [ 
     ./config.nix 
     ./hardware.nix 
-    ./filesystem.nix
+    # ./filesystem.nix
+    ./disko.nix
 
     (import ../../../home/users/test { inherit inputs nixpkgs system overlays; })
     (import ../../../home/users/test/home.nix { inherit inputs stateVersion; })
 
     inputs.home-manager.nixosModules.home-manager
+    inputs.disko.nixosModules.disko
   ];
 }

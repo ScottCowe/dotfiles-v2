@@ -25,6 +25,11 @@
     deploy-rs.url = "github:serokell/deploy-rs";
 
     stylix.url = "github:danth/stylix";
+
+    disko = {
+      url = "github:nix-community/disko/latest";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = { self, ... }@inputs: 

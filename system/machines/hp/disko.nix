@@ -8,11 +8,12 @@
           type = "gpt";
           partitions = {
             boot = {
-              size = "1G";
+              size = "1M";
               type = "EF02"; # for grub MBR
+              priority = 1;
             };
             ESP = {
-              size = "8G";
+              size = "1G";
               type = "EF00";
               content = {
                 type = "filesystem";
