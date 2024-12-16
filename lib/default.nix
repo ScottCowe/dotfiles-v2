@@ -5,13 +5,9 @@ rec {
 
   pc = import ./pc.nix { inherit inputs nix-colors mkPCUser; };
   iso = import ./iso.nix { inherit inputs; };
-  server = import ./server.nix { inherit inputs mkServerService; };
 
   mkPCHost = pc.mkPCHost;
   mkPCUser = pc.mkPCUser;
-
-  mkServerHost = server.mkServerHost;
-  mkServerService = server.mkServerService;
 
   mkHost = { hostname, nixpkgs, stateVersion, system, modules ? [], overlays ? [], ...}:
   nixpkgs.lib.nixosSystem {
