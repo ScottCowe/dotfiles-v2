@@ -38,11 +38,8 @@
   in {
     nixosConfigurations = {
       # PCs
-      framework = libx.mkPCHost (import ./system/machines/framework  { inherit inputs; });
+      framework-old = libx.mkPCHost (import ./system/machines/framework-old  { inherit inputs; });
       hp = libx.mkHost (import ./system/machines/hp { inherit inputs; });
-
-      # Servers
-      home-nas = libx.mkServerHost (import ./system/machines/home-nas { inherit inputs; });
 
       # ISOs 
       iso-x86-64 = libx.mkHost (import ./system/machines/iso-x86-64 { inherit inputs; });

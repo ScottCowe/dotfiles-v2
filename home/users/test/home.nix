@@ -30,5 +30,29 @@ in libx.mkHome {
     ./modules/firefox.nix
     ./modules/rofi
     ./modules/waybar.nix
+    {
+      programs.ssh = {
+        enable = true;
+        addKeysToAgent = "yes";
+
+        extraConfig = ''
+          Host github.com
+            Hostname ssh.github.com
+            Port 443
+        '';
+      };
+
+      services.ssh-agent.enable = true;
+
+      programs.git = {
+        enable = true;
+        userName = "Scott Cowe";
+        userEmail = "scott.t.cowe@gmail.com";
+
+        extraConfig = {
+          init.defaultBranch = "main";
+        };
+      };
+    }
   ];
 } 

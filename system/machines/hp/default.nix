@@ -9,8 +9,7 @@ rec {
   modules = [ 
     ./config.nix 
     ./hardware.nix 
-    # ./filesystem.nix
-    ./disko.nix
+    ./filesystem.nix
 
     (import ../../../home/users/test { inherit inputs nixpkgs system overlays; })
     (import ../../../home/users/test/home.nix { inherit inputs stateVersion; })

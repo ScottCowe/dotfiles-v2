@@ -75,8 +75,8 @@
     decoration = {
       rounding = 0;
 
-      blur.enabled = false;
-      drop_shadow = false;
+      # blur.enabled = false;
+      # drop_shadow = false;
     };
 
     animations = {
