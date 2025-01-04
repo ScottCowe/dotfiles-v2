@@ -38,16 +38,10 @@ with lib; {
             updateInterval = 24 * 60 * 60 * 1000;
             definedAliases = [ "@yt" ];
           };
-          "Tesco" = {
-            urls = [{ template = "https://www.tesco.com/groceries/en-GB/search?query={searchTerms}"; }];
-            iconUpdateURL = "https://www.tesco.com/groceries/web-assets/touch-icons/tesco/favicon-9636e8991a.png";
-            updateInterval = 24 * 60 * 60 * 1000;
-            definedAliases = [ "@ts" "@tesco" ];
-          };
-          "Wikipedia (en)".metaData.alias = "@wiki";
-          "eBay".metaData.alias = "@ebay";
+          "Wikipedia (en)".metaData.alias = "@wk";
+          "eBay".metaData.alias = "@eb";
           "Google".metaData.hidden = true;
-          "Amazon.com".metaData.hidden = "@az";
+          "Amazon.com".metaData.alias = "@az";
           "Bing".metaData.hidden = true;
         };
       };
