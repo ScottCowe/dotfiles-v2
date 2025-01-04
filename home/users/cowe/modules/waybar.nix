@@ -11,11 +11,11 @@
       }
 
       #workspaces button {
-          transition: none;
-          color: #7c818c;
-          background: transparent;
-          padding: 5px;
-          font-size: 18px;
+        transition: none;
+        color: #7c818c;
+        background: transparent;
+        padding: 5px;
+        font-size: 18px;
       }
 
       #workspaces button.persistent {

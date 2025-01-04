@@ -57,6 +57,9 @@ in libx.mkHome {
       programs.thunderbird.enable = true;
       programs.thunderbird.profiles."cowe".isDefault = true;
     }
-    ./modules/thunderbird
+    {
+      nixpkgs.config.allowUnfree = true;
+    }
+    ./modules/discord.nix
   ];
 } 

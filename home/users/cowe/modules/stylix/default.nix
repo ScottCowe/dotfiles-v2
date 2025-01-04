@@ -6,8 +6,6 @@
   stylix.polarity = "dark";
   stylix.base16Scheme = "${pkgs.base16-schemes}/share/themes/kanagawa.yaml";
 
-  # stylix.targets.hyprland.enable = false; # fixed some version shittery
-
   stylix.fonts = {
     serif = {
       package = pkgs.dejavu_fonts;
@@ -20,9 +18,8 @@
     };
 
     monospace = {
-      # package = (pkgs.nerdfonts.override { fonts = [ "FiraCode" ]; });
-      package = pkgs.nerd-fonts.fira-mono;
-      name = "FiraCode Nerd Font";
+      package = pkgs.nerd-fonts.fira-code;
+      name = "FiraCode Nerd Font Mono";
     };
 
     emoji = {
