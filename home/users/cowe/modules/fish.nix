@@ -1,10 +1,24 @@
 { pkgs, ... }:
 
 {
-  programs.fish.enable = true;
+  programs.fish = {
+    enable = true;
+
+    plugins = [
+      {
+        name = "tide";
+        src = pkgs.fishPlugins.tide.src;
+      }
+      {
+        name = "plugin-git";
+        src = pkgs.fishPlugins.plugin-git.src;
+      }
+    ];
+  };
 
   programs.bash = {
     enable = true;
+
     initExtra = ''
       if [[ $(${pkgs.procps}/bin/ps --no-header --pid=$PPID --format=comm) != "fish" && -z ''${BASH_EXECUTION_STRING} ]]
       then
