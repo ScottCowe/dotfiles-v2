@@ -3,7 +3,7 @@
 let 
   libx = (import ../../../lib { inherit inputs; });
 in libx.mkHome {
-  username = "test";
+  username = "cowe";
   stateVersion = stateVersion;
   modules = [ 
     ./modules/fish.nix
