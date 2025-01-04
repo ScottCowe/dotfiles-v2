@@ -17,7 +17,7 @@
           •
           grv  1    2    3    4    5    6    7    8    9    0    -    =    bspc
           tab  q    w    e    r    t    y    u    i    o    p    [    ]    
-          @l1  @a   @s   @d   @f   g    @h   @j   @k   @l    ;    '    \    ret
+          @l1  @a   @s   @d   @f   g    h    @j   @k   @l   @;    '    \    ret
           lsft @tld z    x    c    v    b    n    m    ,    .    /    rsft
           lctl lmet lalt           spc            ralt rctl
         )
@@ -50,10 +50,10 @@
           d (tap-hold 200 200 d lmet)
           f (tap-hold 200 200 f lsft)
           
-          h (tap-hold 200 200 h lsft)
-          j (tap-hold 200 200 j lmet)
-          k (tap-hold 200 200 k lctl)
-          l (tap-hold 200 200 l lalt)
+          j (tap-hold 200 200 j lsft)
+          k (tap-hold 200 200 k lmet)
+          l (tap-hold 200 200 l lctl)
+          ; (tap-hold 200 200 ; lalt)
 
           EN (layer-switch english)
           GM (layer-switch gaming)
