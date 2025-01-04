@@ -31,35 +31,15 @@ in libx.mkHome {
     ./modules/rofi
     ./modules/waybar.nix
     {
-      programs.ssh = {
-        enable = true;
-        addKeysToAgent = "yes";
-
-        extraConfig = ''
-          Host github.com
-            Hostname ssh.github.com
-            Port 443
-        '';
-      };
-
-      services.ssh-agent.enable = true;
-
-      programs.git = {
-        enable = true;
-        userName = "Scott Cowe";
-        userEmail = "scott.t.cowe@gmail.com";
-
-        extraConfig = {
-          init.defaultBranch = "main";
-        };
-      };
-
-      programs.thunderbird.enable = true;
-      programs.thunderbird.profiles."cowe".isDefault = true;
-    }
-    {
       nixpkgs.config.allowUnfree = true;
     }
     ./modules/discord.nix
+    {
+      programs.thunderbird.enable = true;
+      programs.thunderbird.profiles."cowe".isDefault = true;
+    }
+    ./modules/ssh.nix
+    ./modules/git.nix
+    ./modules/nb.nix
   ];
 } 
