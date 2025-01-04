@@ -1,14 +1,6 @@
 { inputs, ... }:
 
-rec {
-  nix-colors = inputs.nix-colors;
-
-  pc = import ./pc.nix { inherit inputs nix-colors mkPCUser; };
-  iso = import ./iso.nix { inherit inputs; };
-
-  mkPCHost = pc.mkPCHost;
-  mkPCUser = pc.mkPCUser;
-
+{
   mkHost = { hostname, nixpkgs, stateVersion, system, modules ? [], overlays ? [], ...}:
   nixpkgs.lib.nixosSystem {
     specialArgs = { inherit inputs; };

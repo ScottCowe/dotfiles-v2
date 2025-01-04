@@ -53,6 +53,10 @@ in libx.mkHome {
           init.defaultBranch = "main";
         };
       };
+
+      programs.thunderbird.enable = true;
+      programs.thunderbird.profiles."cowe".isDefault = true;
     }
+    ./modules/thunderbird
   ];
 } 
