@@ -8,13 +8,13 @@
 
   stylix.fonts = {
     serif = {
-      package = pkgs.dejavu_fonts;
-      name = "DejaVu Serif";
+      package = pkgs.nerd-fonts.liberation;
+      name = "LiterationSerif Nerd Font";
     };
 
     sansSerif = {
-      package = pkgs.dejavu_fonts;
-      name = "DejaVu Sans";
+      package = pkgs.nerd-fonts.liberation;
+      name = "LiterationSans Nerd Font";
     };
 
     monospace = {

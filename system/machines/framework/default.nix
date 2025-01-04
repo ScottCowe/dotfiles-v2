@@ -14,5 +14,7 @@ rec {
     (import ../../../home/users/cowe/home.nix { inherit inputs stateVersion; })
 
     inputs.home-manager.nixosModules.home-manager
+
+    ./modules/katana
   ];
 }
