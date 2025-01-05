@@ -43,5 +43,6 @@ in libx.mkHome {
     ./modules/nb.nix
     ./modules/prismlauncher.nix 
     ./modules/steam.nix
+    ./modules/xdg.nix
   ];
 } 
