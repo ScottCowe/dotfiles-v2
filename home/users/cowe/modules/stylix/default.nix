@@ -27,4 +27,6 @@
       name = "Noto Color Emoji";
     };
   };
+
+  home.packages = with pkgs; [ adwaita-icon-theme ];
 }
