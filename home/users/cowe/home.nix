@@ -21,7 +21,8 @@ in libx.mkHome {
         defaultTimeout = 5000;
       };
     }
-    ./modules/neovim.nix
+    # ./modules/neovim.nix
+    ./modules/neovim
 
     ./modules/stylix
 
