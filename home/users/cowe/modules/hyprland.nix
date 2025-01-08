@@ -13,7 +13,10 @@
 
   wayland.windowManager.hyprland.extraConfig = ''
     # To fix ghost monitor issue, apparantly a kernel/driver bug
-    monitor = Unknown-1, disable
+    monitor = Unknown-1, disable      
+
+    monitor = eDP-1, 2256x1504, 1920x0, 2 
+    monitor = DP-3, 1920x1080, 0x0, 1
   '';
 
   wayland.windowManager.hyprland.settings = {
