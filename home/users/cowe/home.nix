@@ -33,6 +33,10 @@ in libx.mkHome {
     ./modules/waybar.nix
     {
       nixpkgs.config.allowUnfree = true;
+
+      nixpkgs.config.permittedInsecurePackages = [
+        "dotnet-runtime-7.0.20"
+      ];
     }
     ./modules/discord.nix
     {
@@ -44,6 +48,8 @@ in libx.mkHome {
     ./modules/nb.nix
     ./modules/prismlauncher.nix 
     ./modules/steam.nix
-    ./modules/xdg.nix
+    ./modules/xdg.nix 
+    ./modules/libreoffice.nix
+    ./modules/vintagestory.nix
   ];
 } 
