@@ -9,6 +9,8 @@ rec {
   modules = [ 
     ./config.nix 
     ./hardware-configuration.nix
+    
+    inputs.nixos-hardware.nixosModules.framework-13-7040-amd
 
     (import ../../../home/users/cowe { inherit inputs nixpkgs system overlays; })
     (import ../../../home/users/cowe/home.nix { inherit inputs stateVersion; })
