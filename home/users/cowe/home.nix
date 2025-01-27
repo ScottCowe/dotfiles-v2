@@ -50,5 +50,9 @@ in libx.mkHome {
     ./modules/xdg.nix 
     ./modules/libreoffice.nix
     ./modules/vintagestory.nix
+    {
+      programs.bottom.enable = true;
+    }
+    ./modules/vlc.nix
   ];
 } 

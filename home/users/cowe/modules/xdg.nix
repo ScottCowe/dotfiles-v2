@@ -1,16 +1,7 @@
-{ config, pkgs, ... }:
+{ config, ... }:
 
 {
   xdg = {
-    portal = {
-      enable = true;
-      xdgOpenUsePortal = true;
-
-      extraPortals = with pkgs; [
-        xdg-desktop-portal-hyprland
-      ]; 
-    };
-
     userDirs = {
       enable = true;
       documents = "${config.home.homeDirectory}/documents";
