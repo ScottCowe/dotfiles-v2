@@ -25,8 +25,6 @@ in libx.mkHome {
 
     ./modules/stylix
 
-    inputs.stylix.homeManagerModules.stylix
-
     ./modules/firefox.nix
     ./modules/rofi
     ./modules/waybar.nix
@@ -54,5 +52,7 @@ in libx.mkHome {
       programs.bottom.enable = true;
     }
     ./modules/vlc.nix
+
+    ./modules/spicetify
   ];
 } 

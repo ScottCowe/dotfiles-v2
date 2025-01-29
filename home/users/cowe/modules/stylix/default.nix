@@ -1,6 +1,9 @@
-{ pkgs, ... }:
+{ inputs, pkgs, ... }:
 
 {
+  imports = [ inputs.stylix.homeManagerModules.stylix ]; 
+
+
   stylix.enable = true;
   stylix.image = ./wallpaper.jpg;
   stylix.polarity = "dark";

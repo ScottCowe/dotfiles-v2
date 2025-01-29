@@ -18,8 +18,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    # nixvim-flake.url = "github:ScottCowe/nixvim-flake";
-
     nixvim = {
       url = "github:nix-community/nixvim";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -33,6 +31,11 @@
 
     disko = {
       url = "github:nix-community/disko/latest";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    spicetify-nix = {
+      url = "github:Gerg-L/spicetify-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
