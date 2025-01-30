@@ -6,40 +6,25 @@ in libx.mkHome {
   username = "cowe";
   stateVersion = stateVersion;
   modules = [ 
+    {
+      nixpkgs.config.allowUnfree = true;
+    }
+
+    ./modules/lf
+    ./modules/neovim
+    ./modules/stylix
+    ./modules/rofi
+
+    ./modules/bat.nix
     ./modules/fish.nix
     ./modules/eza.nix 
     ./modules/hyprland.nix 
     ./modules/kitty.nix 
     ./modules/wlogout.nix
-    {
-      programs.bat.enable = true;
-    }
-    ./modules/lf
-    {
-      services.mako = {
-        enable = true;
-        defaultTimeout = 5000;
-      };
-    }
-    ./modules/neovim
-
-    ./modules/stylix
-
+    ./modules/mako.nix
     ./modules/firefox.nix
-    ./modules/rofi
     ./modules/waybar.nix
-    {
-      nixpkgs.config.allowUnfree = true;
-
-      nixpkgs.config.permittedInsecurePackages = [
-        "dotnet-runtime-7.0.20"
-      ];
-    }
     ./modules/discord.nix
-    {
-      programs.thunderbird.enable = true;
-      programs.thunderbird.profiles."cowe".isDefault = true;
-    }
     ./modules/ssh.nix
     ./modules/git.nix
     ./modules/nb.nix
@@ -48,11 +33,8 @@ in libx.mkHome {
     ./modules/xdg.nix 
     ./modules/libreoffice.nix
     ./modules/vintagestory.nix
-    {
-      programs.bottom.enable = true;
-    }
     ./modules/vlc.nix
-
-    ./modules/spicetify
+    ./modules/thunderbird.nix
+    ./modules/spicetify.nix
   ];
 } 
