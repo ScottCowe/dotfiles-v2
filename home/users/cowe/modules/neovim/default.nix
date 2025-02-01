@@ -6,6 +6,7 @@
     ./lsp.nix
     ./cmp.nix
     ./options.nix
+    ./telescope.nix
   ];
 
   stylix.targets.nixvim.enable = false;
@@ -32,6 +33,8 @@
       presence-nvim.enable = true;
 
       treesitter.enable = true;
+
+      web-devicons.enable = true;
     };
   };
 }

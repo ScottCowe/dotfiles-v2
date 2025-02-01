@@ -1,35 +1,47 @@
 {
-  programs.nixvim.plugins.cmp = {
+  programs.nixvim.plugins.blink-cmp = {
     enable = true;
-    autoEnableSources = true;
 
     settings = {
-      sources = [
-        { name = "nvim_lsp"; }
-        { name = "path"; }
-        { name = "buffer"; }
-        { name = "luasnip"; }
-      ];
-
-      snippet = {
-        expand = ''
-          function(args) 
-            require('luasnip').lsp_expand(args.body) 
+      appearance = {
+        nerd_font_variant = "mono";
+        use_nvim_cmp_as_default = true;
+      };
+      completion = {
+        accept = {
+          auto_brackets = {
+            enabled = true;
+            semantic_token_resolution = {
+              enabled = false;
+            };
+          };
+        };
+        documentation = {
+          auto_show = true;
+        };
+        ghost_text.enabled = true;
+        menu.auto_show.__raw = ''
+          function(ctx) 
+            return ctx.mode ~= 'cmdline' 
           end
         '';
       };
 
-      mapping = {
-        "<CR>" = "cmp.mapping.confirm({ select = true })";
-        "<Tab>" = ''
-          function(fallback)
-            if cmp.visible() then
-              cmp.select_next_item()
-            else
-              fallback()
-            end
-          end
-        '';
+      keymap.preset = "enter"; 
+
+      signature = {
+        enabled = true;
+      };
+      sources = {
+        cmdline = [ ];
+        providers = {
+          buffer = {
+            score_offset = -7;
+          };
+          lsp = {
+            fallbacks = [ ];
+          };
+        };
       };
     };
   };

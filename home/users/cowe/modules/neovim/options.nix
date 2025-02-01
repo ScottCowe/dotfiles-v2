@@ -3,8 +3,6 @@
     viAlias = true;
     vimAlias = true;
 
-    globals.mapLeader = " ";
-
     opts = {
       number = true;
       relativenumber = true;
