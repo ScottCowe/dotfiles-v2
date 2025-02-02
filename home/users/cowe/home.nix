@@ -36,5 +36,6 @@ in libx.mkHome {
     ./modules/vlc.nix
     ./modules/thunderbird.nix
     ./modules/spicetify.nix
+    ./modules/bluetooth.nix
   ];
 } 
