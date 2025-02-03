@@ -35,6 +35,8 @@
       treesitter.enable = true;
 
       web-devicons.enable = true;
+
+      lsp-lines.enable = true;
     };
   };
 }
