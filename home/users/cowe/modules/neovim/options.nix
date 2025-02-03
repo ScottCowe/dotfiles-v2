@@ -16,5 +16,14 @@
       register = "unnamedplus";
       providers.wl-copy.enable = true;
     };
+
+    files = {
+      "ftplugin/nix.lua" = {
+        opts = {
+          shiftwidth = 2;
+          tabstop = 2;
+        };
+      };
+    };
   };
 }
