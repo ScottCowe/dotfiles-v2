@@ -38,5 +38,6 @@ in libx.mkHome {
     ./modules/spicetify.nix
     ./modules/bluetooth.nix
     ./modules/epy.nix
+    ./modules/qbittorrent.nix
   ];
 } 
