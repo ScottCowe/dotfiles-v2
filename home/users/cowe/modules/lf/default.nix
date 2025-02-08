@@ -15,6 +15,7 @@
       icons = true;
       ignorecase = true;
       drawbox = true;
+      relativenumber = true;
     };
 
     keybindings = {
@@ -37,6 +38,15 @@
     };
 
     commands = {
+      open = ''
+        ''${{
+        case $(${pkgs.file}/bin/file --mime-type -b "$f") in
+          application/pdf) ${pkgs.termpdfpy}/bin/termpdf.py "$f";;
+          application/epub+zip) ${pkgs.epy}/bin/epy "f";;
+          *) ${pkgs.bat}/bin/bat --paging=always --style=numbers,changes "$f";;
+        esac
+        }}
+      '';
       editor-open = ''$$EDITOR $f'';
       mkdir = ''
         %{{
@@ -67,11 +77,6 @@
         printf "New name: "
         read NAME 
         mv "$f" "$NAME"
-        }}
-      '';
-      open = ''
-        ''${{
-        ${pkgs.bat}/bin/bat --paging=always --style=numbers,changes "$f"
         }}
       '';
       tar = ''
