@@ -23,16 +23,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    nix-colors.url = "github:misterio77/nix-colors";
-
-    deploy-rs.url = "github:serokell/deploy-rs";
-
     stylix.url = "github:danth/stylix";
-
-    disko = {
-      url = "github:nix-community/disko/latest";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
 
     spicetify-nix = {
       url = "github:Gerg-L/spicetify-nix";
@@ -46,31 +37,11 @@
   in {
     nixosConfigurations = {
       # PCs
-      framework-old = libx.mkPCHost (import ./system/machines/framework-old  { inherit inputs; });
       framework = libx.mkHost (import ./system/machines/framework { inherit inputs; });
       hp = libx.mkHost (import ./system/machines/hp { inherit inputs; });
 
       # ISOs 
       iso-x86-64 = libx.mkHost (import ./system/machines/iso-x86-64 { inherit inputs; });
     };
-
-    homeConfigurations = {
-      
-    };
-
-    deploy.nodes.home-nas = {
-      hostname = "100.66.112.52";
-      fastConnection = true;
-      interactiveSudo = true;
-      remoteBuild = true;
-
-      profiles.system = {
-        sshUser = "admin";
-        path = inputs.deploy-rs.lib.x86_64-linux.activate.nixos self.nixosConfigurations.home-nas;
-        user = "root";
-      };
-    };
-    
-    checks = builtins.mapAttrs (system: deployLib: deployLib.deployChecks self.deploy) inputs.deploy-rs.lib;
   };
 }
