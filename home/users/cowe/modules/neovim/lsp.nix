@@ -4,7 +4,12 @@
   programs.nixvim.plugins.lsp = {
     enable = true;
     servers = {
-      nil_ls.enable = true;
+      nil_ls = {
+        enable = true;
+        settings.nix.flake.autoEvalInputs = true;
+        settings.nix.maxMemoryMB = 4096;
+      };
+
       lua_ls.enable = true;
       pylsp.enable = true;
       jsonls.enable = true;
