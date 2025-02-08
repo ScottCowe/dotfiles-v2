@@ -37,5 +37,6 @@ in libx.mkHome {
     ./modules/thunderbird.nix
     ./modules/spicetify.nix
     ./modules/bluetooth.nix
+    ./modules/epy.nix
   ];
 } 
