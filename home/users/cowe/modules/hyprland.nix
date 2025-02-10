@@ -1,10 +1,20 @@
-{ pkgs, ... }:
+{ pkgs, config, lib, ... }:
 
 {
   home.packages = with pkgs; [ 
     wl-clipboard
     grim slurp
   ]; 
+
+  stylix.targets.hyprpaper.enable = lib.mkForce false;
+
+  services.hyprpaper = {
+    enable = true;
+    settings = {
+      preload = [ "${config.stylix.image}" ];
+      wallpaper = [ ",${config.stylix.image}" ];
+    };
+  };
 
   wayland.windowManager.hyprland = {
     enable = true;
@@ -23,7 +33,8 @@
     "$mod" = "SUPER";
 
     exec-once = [ 
-      "waybar &"
+      "${pkgs.hyprpaper}/bin/hyprpaper"
+      "waybar"
     ];
       
     bind = [
