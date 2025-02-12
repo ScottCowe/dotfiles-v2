@@ -52,8 +52,8 @@
       editor-open = ''
         ''${{
         case $(${pkgs.file}/bin/file --mime-type -b "$f") in
-          text/*) $$EDITOR $f;;
-          application/json) $$EDITOR $f;;
+          text/*) $EDITOR $f;;
+          application/json) $EDITOR $f;;
           *);;
         esac
         }}
