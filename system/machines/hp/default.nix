@@ -11,10 +11,9 @@ rec {
     ./hardware.nix 
     ./filesystem.nix
 
-    (import ../../../home/users/test { inherit inputs nixpkgs system overlays; })
-    (import ../../../home/users/test/home.nix { inherit inputs stateVersion; })
+    (import ../../../home/users/cowe { inherit inputs nixpkgs system overlays; })
+    (import ../../../home/users/cowe/home.nix { inherit inputs stateVersion; })
 
     inputs.home-manager.nixosModules.home-manager
-    inputs.disko.nixosModules.disko
   ];
 }
