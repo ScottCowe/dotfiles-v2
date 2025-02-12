@@ -35,6 +35,7 @@
   environment.systemPackages = with pkgs; [ 
     vim git 
     # wootility
+    cmatrix
   ];
 
   boot.loader = {
@@ -89,7 +90,12 @@
 
   programs.hyprland.enable = true;
 
-  services.displayManager.ly.enable = true;
+  services.displayManager.ly = {
+    enable = true;
+    settings = {
+      animation = "matrix";
+    };
+  };
 
   services.fwupd.enable = true;
 

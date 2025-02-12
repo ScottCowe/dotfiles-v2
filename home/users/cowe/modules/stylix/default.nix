@@ -5,7 +5,7 @@
 
 
   stylix.enable = true;
-  stylix.image = ./wallpaper.jpg;
+  stylix.image = ./jupiter-wallpaper.png;
   stylix.polarity = "dark";
   stylix.base16Scheme = "${pkgs.base16-schemes}/share/themes/kanagawa.yaml";
 
