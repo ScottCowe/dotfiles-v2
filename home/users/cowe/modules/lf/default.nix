@@ -1,6 +1,8 @@
 { pkgs, ... }:
 
 {
+  imports = [ ./pistol.nix ];
+
   home.packages = with pkgs; [ trashy ];
 
   home.file.".config/lf/icons".source = ./icons;
@@ -47,7 +49,15 @@
         esac
         }}
       '';
-      editor-open = ''$$EDITOR $f'';
+      editor-open = ''
+        ''${{
+        case $(${pkgs.file}/bin/file --mime-type -b "$f") in
+          text/*) $$EDITOR $f;;
+          application/json) $$EDITOR $f;;
+          *);;
+        esac
+        }}
+      '';
       mkdir = ''
         %{{
         printf "Directory name: "
@@ -126,7 +136,7 @@
           exit 1
         fi
 
-        ${pkgs.bat}/bin/bat --paging=always --style=plain --color=always "$file"
+        ${pkgs.pistol}/bin/pistol "$file"
       '';
 
       cleaner = pkgs.writeShellScriptBin "clean.sh" ''

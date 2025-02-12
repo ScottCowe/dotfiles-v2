@@ -1,7 +1,7 @@
 { pkgs, ... }:
 
 {
-  home.programs = with pkgs; [ grc ];
+  home.packages = with pkgs; [ grc ];
 
   programs.fish = {
     enable = true;    
@@ -24,12 +24,6 @@
         src = pkgs.fishPlugins.grc.src; 
       }
     ];
-
-    functions = {
-      lfcd = ''
-        cd "$(command lf -print-last-dir $argv)"
-      '';
-    };
   };
 
   programs.bash = {
