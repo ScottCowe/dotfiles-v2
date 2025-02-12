@@ -16,7 +16,6 @@ in libx.mkHome {
     ./modules/rofi
 
     ./modules/bat.nix
-    ./modules/fish.nix
     ./modules/eza.nix 
     ./modules/hyprland.nix 
     ./modules/kitty.nix 
@@ -39,5 +38,6 @@ in libx.mkHome {
     ./modules/bluetooth.nix
     ./modules/epy.nix
     ./modules/qbittorrent.nix
+    ./modules/fish.nix
   ];
 } 

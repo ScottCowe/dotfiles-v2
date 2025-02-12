@@ -1,8 +1,14 @@
 { pkgs, ... }:
 
 {
+  home.programs = with pkgs; [ grc ];
+
   programs.fish = {
-    enable = true;
+    enable = true;    
+
+    interactiveShellInit = ''
+      set fish_greeting # Disable greeting
+    '';
 
     plugins = [
       {
@@ -13,7 +19,17 @@
         name = "plugin-git";
         src = pkgs.fishPlugins.plugin-git.src;
       }
+      { 
+        name = "grc"; 
+        src = pkgs.fishPlugins.grc.src; 
+      }
     ];
+
+    functions = {
+      lfcd = ''
+        cd "$(command lf -print-last-dir $argv)"
+      '';
+    };
   };
 
   programs.bash = {
