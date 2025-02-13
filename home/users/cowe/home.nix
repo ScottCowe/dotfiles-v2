@@ -39,5 +39,6 @@ in libx.mkHome {
     ./modules/epy.nix
     ./modules/qbittorrent.nix
     ./modules/fish.nix
+    ./modules/protonvpn.nix
   ];
 } 

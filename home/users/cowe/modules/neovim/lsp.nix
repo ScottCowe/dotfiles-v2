@@ -16,7 +16,7 @@
       yamlls.enable = true;
 
       clangd.enable = true;
-     
+
       rust_analyzer = {
         enable = true;
         installCargo = true;
@@ -24,7 +24,7 @@
       };
 
       kotlin_language_server.enable = true;
-      
+
       html.enable = true;
       cssls.enable = true;
       ts_ls.enable = true;
