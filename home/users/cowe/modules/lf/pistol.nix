@@ -9,6 +9,10 @@
         command = "${pkgs.bat}/bin/bat %pistol-filename%";
       }
       {
+        mime = "application/javascript";
+        command = "${pkgs.bat}/bin/bat %pistol-filename%";
+      }
+      {
         fpath = ".*.md$";
         command = "${pkgs.bat}/bin/bat %pistol-filename%";
       }
