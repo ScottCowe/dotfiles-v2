@@ -17,6 +17,6 @@ rec {
 
     inputs.home-manager.nixosModules.home-manager
 
-    ./modules/katana
+    ./modules/kanata
   ];
 }
