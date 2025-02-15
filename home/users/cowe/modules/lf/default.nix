@@ -54,6 +54,7 @@
         case $(${pkgs.file}/bin/file --mime-type -b "$f") in
           text/*) $EDITOR $f;;
           application/json) $EDITOR $f;;
+          inode/x-empty) $EDITOR $f;;
           *);;
         esac
         }}
