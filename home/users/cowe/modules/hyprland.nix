@@ -35,6 +35,7 @@
     exec-once = [ 
       "${pkgs.hyprpaper}/bin/hyprpaper"
       "waybar"
+      "blueman-applet"
     ];
       
     bind = [

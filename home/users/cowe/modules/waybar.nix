@@ -1,49 +1,15 @@
 {
+  stylix.targets.waybar.enable = false;
+
   programs.waybar = {
     enable = true;
-
-    style = ''
-      #workspaces {
-        margin-right: 8px;
-        border-radius: 10px;
-        transition: none;
-        background: #383c4a;
-      }
-
-      #workspaces button {
-        transition: none;
-        color: #7c818c;
-        background: transparent;
-        padding: 5px;
-        font-size: 18px;
-      }
-
-      #workspaces button.persistent {
-          color: #7c818c;
-          font-size: 12px;
-      }
-
-      /* https://github.com/Alexays/Waybar/wiki/FAQ#the-workspace-buttons-have-a-strange-hover-effect */
-      #workspaces button:hover {
-          transition: none;
-          box-shadow: inherit;
-          text-shadow: inherit;
-          border-radius: inherit;
-          color: #383c4a;
-          background: #7c818c;
-      }
-
-      #workspaces button.focused {
-          color: white;
-      } 
-    '';
 
     settings = {
       bar = {
         "layer" = "top";
         "modules-left" = [ "hyprland/workspaces" ];
         "modules-center" = [ "clock" ];
-        "modules-right" = [ "battery" ];
+        "modules-right" = [ "tray" "network" "battery" ];
         "battery" = {
           format = "{capacity}% {icon}";
           format-icons = {
@@ -60,17 +26,7 @@
         };
         "clock" = {
           "format" = "  {:%a %e %b %H:%M}";
-          "tooltip-format" = "<tt>{calendar}</tt>";
-          "calendar" = {
-            "mode" = "month";
-            "format" = {
-              "months" = "<span color='#cdd6f4'><b>{}</b></span>";
-              "days" = "<span color='#cdd6f4'><b>{}</b></span>";
-              "weeks" = "<span color='#cdd6f4'><b>W{}</b></span>";
-              "weekdays" = "<span color='#cdd6f4'><b>{}</b></span>";
-              "today" = "<span color='#f38ba8'><b>{}</b></span>";
-            };
-          };
+          "tooltip" = false;
         };
         "hyprland/workspaces" = {
           "all-outputs" = true;
@@ -78,7 +34,71 @@
           "sort-by-number" = true;
           "active-only" = false;
         };
+        "tray" = {
+          "icon-size" = 15;
+          "spacing" = 5;
+        };
+        "network" = {
+          "format-disconnected" = "󰯡";
+          "format-ethernet" = "󰒢";
+          "format-linked" = "󰖪";
+          "format-wifi" = "󰖩";
+          "interval" = 1;
+          "tooltip" = true;
+          "tooltip-format-ethernet" = "{ipaddr}";
+          "tooltip-format-wifi" = "{essid} {ipaddr}";
+          "tooltip-format-disconnected" = "No connection";
+        };
       };
     };
+
+    style = ''
+      #workspaces {
+        background-color: transparent;
+      }
+
+      #workspaces button {
+        font-size: 80%;
+      }
+
+      #workspaces button.active {
+        font-size: 100%;
+      }
+
+      #workspaces button.empty {
+
+      }
+
+      #workspaces button.persistent {
+
+      }
+
+      #workspaces button.special {
+
+      }
+       
+      #workspaces button.visible {
+
+      }
+
+      #workspaces button.urgent {
+
+      }
+
+      #battery {
+        padding-right: 8px;
+        padding-left: 4px;
+      }
+
+      #network {
+        padding-right: 4px;
+        padding-left: 4px;
+      }
+
+      #tray {
+        padding-right: 4px;
+        padding-left: 4px;
+      }
+    '';
   };
 }
