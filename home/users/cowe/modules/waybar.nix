@@ -9,12 +9,38 @@
         "layer" = "top";
         "modules-left" = [ "hyprland/workspaces" ];
         "modules-center" = [ "clock" ];
-        "modules-right" = [ "tray" "network" "battery" ];
+        "modules-right" = [
+          "tray"
+          "network"
+          "battery"
+        ];
         "battery" = {
           format = "{capacity}% {icon}";
           format-icons = {
-            charging = [ "󰢜" "󰂆" "󰂇" "󰂈" "󰢝" "󰂉" "󰢞" "󰂊" "󰂋" "󰂅" ];
-            default = [ "󰁺" "󰁻" "󰁼" "󰁽" "󰁾" "󰁿" "󰂀" "󰂁" "󰂂" "󰁹" ];
+            charging = [
+              "󰢜"
+              "󰂆"
+              "󰂇"
+              "󰂈"
+              "󰢝"
+              "󰂉"
+              "󰢞"
+              "󰂊"
+              "󰂋"
+              "󰂅"
+            ];
+            default = [
+              "󰁺"
+              "󰁻"
+              "󰁼"
+              "󰁽"
+              "󰁾"
+              "󰁿"
+              "󰂀"
+              "󰂁"
+              "󰂂"
+              "󰁹"
+            ];
           };
           format-full = "";
           interval = 5;
@@ -52,53 +78,54 @@
       };
     };
 
-    style = /*css*/ ''
-      #workspaces {
-        background-color: transparent;
-      }
+    style = # css
+      ''
+        #workspaces {
+          background-color: transparent;
+        }
 
-      #workspaces button {
-        font-size: 80%;
-      }
+        #workspaces button {
+          font-size: 80%;
+        }
 
-      #workspaces button.active {
-        font-size: 100%;
-      }
+        #workspaces button.active {
+          font-size: 100%;
+        }
 
-      #workspaces button.empty {
+        #workspaces button.empty {
 
-      }
+        }
 
-      #workspaces button.persistent {
+        #workspaces button.persistent {
 
-      }
+        }
 
-      #workspaces button.special {
+        #workspaces button.special {
 
-      }
-       
-      #workspaces button.visible {
+        }
+         
+        #workspaces button.visible {
 
-      }
+        }
 
-      #workspaces button.urgent {
+        #workspaces button.urgent {
 
-      }
+        }
 
-      #battery {
-        padding-right: 8px;
-        padding-left: 4px;
-      }
+        #battery {
+          padding-right: 8px;
+          padding-left: 4px;
+        }
 
-      #network {
-        padding-right: 4px;
-        padding-left: 4px;
-      }
+        #network {
+          padding-right: 4px;
+          padding-left: 4px;
+        }
 
-      #tray {
-        padding-right: 4px;
-        padding-left: 4px;
-      }
-    '';
+        #tray {
+          padding-right: 4px;
+          padding-left: 4px;
+        }
+      '';
   };
 }

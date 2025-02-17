@@ -1,4 +1,8 @@
-{ lib, pkgs, ... }:
+{
+  lib,
+  pkgs,
+  ...
+}:
 
 {
   programs.nixvim.plugins.lsp = {
@@ -8,6 +12,7 @@
         enable = true;
         settings.nix.flake.autoEvalInputs = true;
         settings.nix.maxMemoryMB = 4096;
+        settings.formatting.command = [ "${lib.getExe pkgs.nixfmt-rfc-style}" ];
       };
 
       lua_ls.enable = true;
@@ -44,7 +49,7 @@
         "<space>a" = "code_action";
       };
 
-      extra = [ 
+      extra = [
         {
           action = "<cmd>lua require'jdtls'.organize_imports()<CR>";
           key = "<space>o";
