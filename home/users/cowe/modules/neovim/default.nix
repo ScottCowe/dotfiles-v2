@@ -7,6 +7,7 @@
     ./cmp.nix
     ./options.nix
     ./telescope.nix
+    ./treesitter.nix
   ];
 
   stylix.targets.nixvim.enable = false;
@@ -31,8 +32,6 @@
       comment.enable = true;
 
       presence-nvim.enable = true;
-
-      treesitter.enable = true;
 
       web-devicons.enable = true;
 

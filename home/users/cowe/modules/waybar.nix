@@ -52,7 +52,7 @@
       };
     };
 
-    style = ''
+    style = /*css*/ ''
       #workspaces {
         background-color: transparent;
       }
