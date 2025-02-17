@@ -2,14 +2,14 @@
 
 ## TODO
 
-[ ] Fix syntax highlighting with bat for .tsx files
+- [ ] Fix syntax highlighting with bat for .tsx files
 
-[ ] Get svgs in lf to display at full size 
+- [ ] Get svgs in lf to display at full size 
 
-[ ] Get file search in lf working
+- [ ] Get file search in lf working
 
-[ ] Latex editing with neovim
+- [ ] Latex editing with neovim
 
-[ ] Unicode typing (kanata is too slow) (also hrms)
+- [ ] Unicode typing (kanata is too slow) (also hrms)
 
-[ ] Nicer firefox config (or different browser w/ vim like bindings)
+- [ ] Nicer firefox config (or different browser w/ vim like bindings)
