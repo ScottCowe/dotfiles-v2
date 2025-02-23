@@ -1,10 +1,10 @@
 { ... }:
 
-{ 
+{
   programs.kitty = {
     enable = true;
 
-    font =  {
+    font = {
       size = 12;
     };
 
@@ -14,6 +14,7 @@
       tab_bar_style = "powerline";
       tab_powerline_style = "slanted";
       enable_audio_bell = false;
+      allow_remote_control = true;
     };
 
     keybindings = {

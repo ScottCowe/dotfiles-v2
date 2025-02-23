@@ -3,7 +3,6 @@
 {
   imports = [ inputs.stylix.homeManagerModules.stylix ]; 
 
-
   stylix.enable = true;
   stylix.image = ./jupiter-wallpaper.png;
   stylix.polarity = "dark";

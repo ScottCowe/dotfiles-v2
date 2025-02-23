@@ -8,6 +8,8 @@
     ./options.nix
     ./telescope.nix
     ./treesitter.nix
+    # ./languages/ask.nix # for another time perhaps
+    ./languages/tex.nix
   ];
 
   stylix.targets.nixvim.enable = false;
@@ -16,11 +18,11 @@
     enable = true;
     defaultEditor = true;
 
-    colorschemes.kanagawa.enable = true;    
+    colorschemes.kanagawa.enable = true;
 
     plugins = {
       lualine.enable = true;
-  
+
       luasnip.enable = true;
 
       nvim-autopairs.enable = true;

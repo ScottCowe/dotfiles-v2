@@ -1,6 +1,7 @@
 {
   lib,
   pkgs,
+  inputs,
   ...
 }:
 
@@ -8,11 +9,21 @@
   programs.nixvim.plugins.lsp = {
     enable = true;
     servers = {
-      nil_ls = {
+      nixd = {
         enable = true;
-        settings.nix.flake.autoEvalInputs = true;
-        settings.nix.maxMemoryMB = 4096;
-        settings.formatting.command = [ "${lib.getExe pkgs.nixfmt-rfc-style}" ];
+        settings =
+          let
+            flake = ''(builtins.getFlake "${inputs.self}")'';
+            system = ''''${builtins.currentSystem}'';
+          in
+          {
+            formatting.command = [ "${lib.getExe pkgs.nixfmt-rfc-style}" ];
+
+            nixpkgs.expr = "import ${flake}.inputs.nixpkgs { }";
+            options = {
+              nixvim.expr = ''${flake}.packages.${system}.nvim.options'';
+            };
+          };
       };
 
       lua_ls.enable = true;
@@ -34,8 +45,6 @@
       cssls.enable = true;
       ts_ls.enable = true;
       phpactor.enable = true;
-
-      texlab.enable = true;
     };
 
     keymaps = {
@@ -64,9 +73,7 @@
 
   programs.nixvim.plugins.nvim-jdtls = {
     enable = true;
-    cmd = [
-      (lib.getExe pkgs.jdt-language-server)
-    ];
+    cmd = [ (lib.getExe pkgs.jdt-language-server) ];
     data = "~/.cache/jdtls/workspace";
     settings = {
       java = {

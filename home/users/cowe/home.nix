@@ -1,11 +1,12 @@
 { inputs, stateVersion, ... }:
 
-let 
+let
   libx = (import ../../../lib { inherit inputs; });
-in libx.mkHome {
+in
+libx.mkHome {
   username = "cowe";
   stateVersion = stateVersion;
-  modules = [ 
+  modules = [
     {
       nixpkgs.config.allowUnfree = true;
     }
@@ -16,9 +17,9 @@ in libx.mkHome {
     ./modules/rofi
 
     ./modules/bat.nix
-    ./modules/eza.nix 
-    ./modules/hyprland.nix 
-    ./modules/kitty.nix 
+    ./modules/eza.nix
+    ./modules/hyprland.nix
+    ./modules/kitty.nix
     ./modules/wlogout.nix
     ./modules/mako.nix
     ./modules/firefox.nix
@@ -27,9 +28,9 @@ in libx.mkHome {
     ./modules/ssh.nix
     ./modules/git.nix
     ./modules/nb.nix
-    ./modules/prismlauncher.nix 
+    ./modules/prismlauncher.nix
     ./modules/steam.nix
-    ./modules/xdg.nix 
+    ./modules/xdg.nix
     ./modules/libreoffice.nix
     ./modules/vintagestory.nix
     ./modules/vlc.nix
@@ -40,5 +41,6 @@ in libx.mkHome {
     ./modules/qbittorrent.nix
     ./modules/fish.nix
     ./modules/zen.nix
+    # ./modules/ask.nix # fails bc ghc-internal is broken
   ];
-} 
+}
