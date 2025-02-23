@@ -27,7 +27,6 @@ libx.mkHome {
     ./modules/discord.nix
     ./modules/ssh.nix
     ./modules/git.nix
-    ./modules/nb.nix
     ./modules/prismlauncher.nix
     ./modules/steam.nix
     ./modules/xdg.nix
