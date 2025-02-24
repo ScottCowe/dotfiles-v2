@@ -3,7 +3,7 @@
 {
   programs.pistol = {
     enable = true;
-    associations = [ 
+    associations = [
       {
         mime = "application/json";
         command = "${pkgs.bat}/bin/bat %pistol-filename%";

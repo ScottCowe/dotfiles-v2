@@ -34,6 +34,7 @@
       at = "tar";
       ag = "targz";
       au = "unarchive";
+      f = "fzf-search";
 
       m = "";
       d = "";
@@ -118,32 +119,42 @@
           lf -remote "send $id set statfmt \"$(eza -ld --color=always "$f" | sed 's/\\/\\\\/g;s/"/\\"/g')\""
         }}
       '';
+      fzf-search = ''
+        ''${{
+          cmd="${pkgs.ripgrep}/bin/rg --column --line-number --no-heading --color=always --smart-case"
+          ${pkgs.fzf}/bin/fzf --ansi --disabled --layout=reverse --header="Search in files" --delimiter=: \
+              --bind="start:reload([ -n {q} ] && $cmd -- {q} || true)" \
+              --bind="change:reload([ -n {q} ] && $cmd -- {q} || true)" \
+              --bind='enter:become(lf -remote "send $id select \"$(printf "%s" {1} | sed '\'''s/\\/\\\\/g;s/"/\\"/g'\''')\"")' \
+              --preview='cat -- {1}'
+        }}
+      '';
     };
 
-    extraConfig = 
-    let 
-      previewer = pkgs.writeShellScriptBin "pv.sh" ''
-        file=$1
-        w=$2
-        h=$3
-        x=$4
-        y=$5
-        
-        if [[ "$( ${pkgs.file}/bin/file -Lb --mime-type "$file")" =~ ^image ]]; then
-          ${pkgs.kitty}/bin/kitty +kitten icat --silent --stdin no --transfer-mode file --place "''${w}x''${h}@''${x}x''${y}" "$file" < /dev/null > /dev/tty
-          exit 1
-        fi
+    extraConfig =
+      let
+        previewer = pkgs.writeShellScriptBin "pv.sh" ''
+          file=$1
+          w=$2
+          h=$3
+          x=$4
+          y=$5
 
-        ${pkgs.pistol}/bin/pistol "$file"
-      '';
+          if [[ "$( ${pkgs.file}/bin/file -Lb --mime-type "$file")" =~ ^image ]]; then
+            ${pkgs.kitty}/bin/kitty +kitten icat --silent --stdin no --transfer-mode file --place "''${w}x''${h}@''${x}x''${y}" "$file" < /dev/null > /dev/tty
+            exit 1
+          fi
 
-      cleaner = pkgs.writeShellScriptBin "clean.sh" ''
-        ${pkgs.kitty}/bin/kitty +kitten icat --clear --stdin no --silent --transfer-mode file < /dev/null > /dev/tty
+          ${pkgs.pistol}/bin/pistol "$file"
+        '';
+
+        cleaner = pkgs.writeShellScriptBin "clean.sh" ''
+          ${pkgs.kitty}/bin/kitty +kitten icat --clear --stdin no --silent --transfer-mode file < /dev/null > /dev/tty
+        '';
+      in
+      ''
+        set cleaner ${cleaner}/bin/clean.sh
+        set previewer ${previewer}/bin/pv.sh
       '';
-    in
-    ''
-      set cleaner ${cleaner}/bin/clean.sh
-      set previewer ${previewer}/bin/pv.sh
-    '';
   };
 }
