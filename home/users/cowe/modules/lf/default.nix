@@ -34,7 +34,8 @@
       at = "tar";
       ag = "targz";
       au = "unarchive";
-      f = "fzf-search";
+      f = "fzf-jump";
+      F = "fzf-search";
 
       m = "";
       d = "";
@@ -117,6 +118,14 @@
       on-select = ''
         &{{
           lf -remote "send $id set statfmt \"$(eza -ld --color=always "$f" | sed 's/\\/\\\\/g;s/"/\\"/g')\""
+        }}
+      '';
+      fzf-jump = ''
+        ''${{
+          lf -remote "send select '$(
+              FZF_DEFAULT_COMMAND="${pkgs.fd}/bin/fd --search-path $PWD" \
+                  ${pkgs.fzf}/bin/fzf --exact --preview-window=nohidden
+          )'"
         }}
       '';
       fzf-search = ''
