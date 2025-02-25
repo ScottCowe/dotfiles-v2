@@ -1,18 +1,25 @@
 {
   programs.nixvim = {
-    plugins.lsp.servers.texlab = {
-      enable = true;
-      settings = {
-        build.args = ''["-pdf", "-C", "-interaction=nonstopmode", "-synctex=1", "%f"]'';
-      };
-    };
+    plugins.lsp.servers.texlab.enable = true;
 
     plugins.vimtex = {
       enable = true;
-      settings.view_method = "zathura";
-
-      # TODO: Cleanup files after closing buffer
-      # TODO: Close viewer after closing buffer
+      settings = {
+        view_method = "zathura";
+      };
     };
+
+    autoGroups."CustomTex".clear = false;
+
+    autoCmd = [
+      {
+        event = "User";
+        group = "CustomTex";
+        pattern = "VimtexEventQuit";
+        command = "VimtexClean";
+      }
+    ];
+    
+    # TODO: Close viewer after closing buffer
   };
 }

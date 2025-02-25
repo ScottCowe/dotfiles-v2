@@ -123,7 +123,7 @@
       fzf-jump = ''
         ''${{
           lf -remote "send select '$(
-              FZF_DEFAULT_COMMAND="${pkgs.fd}/bin/fd --search-path $PWD" \
+              FZF_DEFAULT_COMMAND="${pkgs.fd}/bin/fd --hidden --search-path $PWD" \
                   ${pkgs.fzf}/bin/fzf --exact --preview-window=nohidden
           )'"
         }}
