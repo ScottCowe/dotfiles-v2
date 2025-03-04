@@ -1,9 +1,18 @@
+{ pkgs, ... }:
+
 {
   programs.nixvim = {
     plugins.lsp.servers.texlab.enable = true;
 
     plugins.vimtex = {
       enable = true;
+      texlivePackage = (
+        pkgs.texliveFull.withPackages (
+          ps: with ps; [
+            multirow
+          ]
+        )
+      );
       settings = {
         view_method = "zathura";
       };
@@ -19,7 +28,7 @@
         command = "VimtexClean";
       }
     ];
-    
+
     # TODO: Close viewer after closing buffer
   };
 }
