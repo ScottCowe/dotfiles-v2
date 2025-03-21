@@ -8,7 +8,7 @@
     ./options.nix
     ./telescope.nix
     ./treesitter.nix
-    # ./languages/ask.nix # for another time perhaps
+    ./languages/ask.nix
     ./languages/tex.nix
   ];
 

@@ -6,19 +6,19 @@
   stylix.targets.spicetify.enable = false;
 
   programs.spicetify =
-   let
-     spicePkgs = inputs.spicetify-nix.legacyPackages.${pkgs.system};
-   in
-   {
-     enable = true;
+    let
+      spicePkgs = inputs.spicetify-nix.legacyPackages.${pkgs.system};
+    in
+    {
+      enable = true;
 
-     enabledExtensions = with spicePkgs.extensions; [
-       adblock
-       hidePodcasts
-       shuffle 
-       keyboardShortcut
-     ];
+      enabledExtensions = with spicePkgs.extensions; [
+        adblock
+        hidePodcasts
+        shuffle
+        keyboardShortcut
+      ];
 
-     theme = spicePkgs.themes.text;
-   };
+      # theme = spicePkgs.themes.text;
+    };
 }
