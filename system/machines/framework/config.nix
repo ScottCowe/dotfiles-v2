@@ -16,7 +16,7 @@
   services.tailscale.enable = true;
 
   hardware.bluetooth.enable = true;
-  hardware.bluetooth.powerOnBoot = true; 
+  hardware.bluetooth.powerOnBoot = true;
 
   services.blueman.enable = true;
 
@@ -42,10 +42,11 @@
 
   programs.zsh.enable = true;
   programs.dconf.enable = true;
-  
-  environment.defaultPackages = lib.mkForce [];
-  environment.systemPackages = with pkgs; [ 
-    vim git 
+
+  environment.defaultPackages = lib.mkForce [ ];
+  environment.systemPackages = with pkgs; [
+    vim
+    git
     # wootility
     cmatrix
   ];
@@ -62,14 +63,17 @@
     hostName = "framework";
     networkmanager.enable = true;
   };
-  
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+
+  nix.settings.experimental-features = [
+    "nix-command"
+    "flakes"
+  ];
 
   system.stateVersion = "24.11";
 
   i18n.defaultLocale = "en_US.UTF-8";
 
-  time.timeZone = "London/Europe";
+  time.timeZone = "Etc/GMT-1";
 
   console = {
     earlySetup = true;
@@ -84,13 +88,13 @@
   #       # Wooting One Legacy
   #       SUBSYSTEM=="hidraw", ATTRS{idVendor}=="03eb", ATTRS{idProduct}=="ff01", TAG+="uaccess"
   #       SUBSYSTEM=="usb", ATTRS{idVendor}=="03eb", ATTRS{idProduct}=="ff01", TAG+="uaccess"
-  #       # Wooting One update mode 
+  #       # Wooting One update mode
   #       SUBSYSTEM=="hidraw", ATTRS{idVendor}=="03eb", ATTRS{idProduct}=="2402", TAG+="uaccess"
   #
   #       # Wooting Two Legacy
   #       SUBSYSTEM=="hidraw", ATTRS{idVendor}=="03eb", ATTRS{idProduct}=="ff02", TAG+="uaccess"
   #       SUBSYSTEM=="usb", ATTRS{idVendor}=="03eb", ATTRS{idProduct}=="ff02", TAG+="uaccess"
-  #       # Wooting Two update mode  
+  #       # Wooting Two update mode
   #       SUBSYSTEM=="hidraw", ATTRS{idVendor}=="03eb", ATTRS{idProduct}=="2403", TAG+="uaccess"
   #
   #       # Generic Wootings
@@ -116,12 +120,12 @@
   services.auto-cpufreq.enable = true;
   services.auto-cpufreq.settings = {
     battery = {
-       governor = "powersave";
-       turbo = "never";
+      governor = "powersave";
+      turbo = "never";
     };
     charger = {
-       governor = "performance";
-       turbo = "auto";
+      governor = "performance";
+      turbo = "auto";
     };
   };
 }
