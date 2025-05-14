@@ -71,15 +71,32 @@
     };
   };
 
-  programs.nixvim.plugins.nvim-jdtls = {
+  programs.nixvim.plugins.jdtls = {
     enable = true;
-    cmd = [ (lib.getExe pkgs.jdt-language-server) ];
-    data = "~/.cache/jdtls/workspace";
     settings = {
+      cmd = [
+        "java"
+        "-data"
+        "~/.cache/jdtls/workspace"
+        # (lib.getExe pkgs.jdt-language-server)
+      ];
+
       java = {
         signatureHelp = true;
         completion = true;
       };
     };
   };
+
+  # programs.nixvim.plugins.nvim-jdtls = {
+  #   enable = true;
+  #   cmd = [ (lib.getExe pkgs.jdt-language-server) ];
+  #   data = "~/.cache/jdtls/workspace";
+  #   settings = {
+  #     java = {
+  #       signatureHelp = true;
+  #       completion = true;
+  #     };
+  #   };
+  # };
 }
