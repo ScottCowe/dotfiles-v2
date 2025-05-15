@@ -40,6 +40,5 @@ libx.mkHome {
     ./modules/qbittorrent.nix
     ./modules/fish.nix
     ./modules/zen.nix
-    # ./modules/ask.nix # fails bc ghc-internal is broken
   ];
 }

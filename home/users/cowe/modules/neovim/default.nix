@@ -8,7 +8,6 @@
     ./options.nix
     ./telescope.nix
     ./treesitter.nix
-    ./languages/ask.nix
     ./languages/tex.nix
   ];
 
