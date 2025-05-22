@@ -13,6 +13,8 @@
     proggyfonts
   ];
 
+  programs.noisetorch.enable = true;
+
   services.tailscale.enable = true;
 
   hardware.bluetooth.enable = true;
