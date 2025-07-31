@@ -36,7 +36,6 @@ libx.mkHome {
     ./modules/thunderbird.nix
     ./modules/spicetify.nix
     ./modules/bluetooth.nix
-    ./modules/epy.nix
     ./modules/qbittorrent.nix
     ./modules/fish.nix
     ./modules/zen.nix
