@@ -66,7 +66,7 @@
       }
       {
         mime = "application/pdf";
-        command = "${pkgs.poppler_utils}/bin/pdftotext %pistol-filename% -";
+        command = "${pkgs.poppler-utils}/bin/pdftotext %pistol-filename% -";
       }
       {
         mime = "application/*";

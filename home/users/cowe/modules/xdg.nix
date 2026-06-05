@@ -13,5 +13,22 @@
       publicShare = null;
       templates = null;
     };
+
+    portal = {
+      enable = true;
+      xdgOpenUsePortal = true;
+    };
+
+    mimeApps = {
+      enable = true;
+      defaultApplications = {
+        "x-scheme-handler/http" = [ "firefox.desktop" ];
+        "x-scheme-handler/https" = [ "firefox.desktop" ];
+        "x-scheme-handler/api" = [ "firefox.desktop" ];
+        "x-scheme-handler/unity" = [ "firefox.desktop" ];
+        "text/html" = [ "firefox.desktop" ];
+        "application/pdf" = [ "firefox.desktop" ];
+      };
+    };
   };
 }

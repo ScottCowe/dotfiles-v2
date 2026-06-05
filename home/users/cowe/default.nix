@@ -5,5 +5,5 @@ let
   pkgs = import nixpkgs { inherit system overlays; };
 in libx.mkUser {
   username = "cowe";
-  extraGroups = [ "wheel" "networkmanager" ]; 
+  extraGroups = [ "wheel" "networkmanager" "dialout"]; 
 } pkgs 

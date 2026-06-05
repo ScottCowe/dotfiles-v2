@@ -11,6 +11,7 @@ libx.mkHome {
       nixpkgs.config.allowUnfree = true;
     }
 
+    ./modules/devenv.nix
     ./modules/lf
     ./modules/neovim
     ./modules/stylix
@@ -39,5 +40,6 @@ libx.mkHome {
     ./modules/qbittorrent.nix
     ./modules/fish.nix
     ./modules/zen.nix
+    ./modules/jetbrains.nix
   ];
 }

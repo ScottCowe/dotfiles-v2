@@ -38,7 +38,12 @@
 
       lsp-lines.enable = true;
 
-      lsp-format.enable = true;
+      lsp-format = {
+        enable = true;
+        settings = {
+          c.tab_width = 4;
+        };
+      };
     };
   };
 }

@@ -14,14 +14,14 @@
         settings =
           let
             flake = ''(builtins.getFlake "${inputs.self}")'';
-            system = ''''${builtins.currentSystem}'';
+            system = "\${builtins.currentSystem}";
           in
           {
             formatting.command = [ "${lib.getExe pkgs.nixfmt-rfc-style}" ];
 
             nixpkgs.expr = "import ${flake}.inputs.nixpkgs { }";
             options = {
-              nixvim.expr = ''${flake}.packages.${system}.nvim.options'';
+              nixvim.expr = "${flake}.packages.${system}.nvim.options";
             };
           };
       };
@@ -31,7 +31,13 @@
       jsonls.enable = true;
       yamlls.enable = true;
 
-      clangd.enable = true;
+      clangd = {
+        enable = true;
+        cmd = [
+          "clangd"
+          "--fallback-style=webkit"
+        ];
+      };
 
       rust_analyzer = {
         enable = true;

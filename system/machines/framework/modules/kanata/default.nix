@@ -12,16 +12,16 @@
           lsft <    z    x    c    v    b    n    m    ,    .    /    rsft
           lctl lmet lalt           spc            ralt rctl
         )
- 
+
         (deflayer english
-          •
+          caps  
           grv  1    2    3    4    5    6    7    8    9    0    -    =    bspc
           tab  q    w    e    r    t    y    u    i    o    p    [    ]    
           @l1  a    s    d    f    g    h    j    k    l    ;    '    \    ret
           lsft @tld z    x    c    v    b    n    m    ,    .    /    rsft
           lctl lmet lalt           spc            @l2  rctl
         )
-        
+
         (deflayer english-hrm
           •
           grv  1    2    3    4    5    6    7    8    9    0    -    =    bspc

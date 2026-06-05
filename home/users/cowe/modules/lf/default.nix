@@ -43,10 +43,10 @@
 
     commands = {
       # application/epub+zip) ${pkgs.epy}/bin/epy "$f";; # epy broken?
+      # application/pdf) ${pkgs.termpdfpy}/bin/termpdf.py "$f";; # termpdf broken too?
       open = ''
         ''${{
         case $(${pkgs.file}/bin/file --mime-type -b "$f") in
-          application/pdf) ${pkgs.termpdfpy}/bin/termpdf.py "$f";;
           *) ${pkgs.bat}/bin/bat --paging=always --style=numbers,changes "$f";;
         esac
         }}

@@ -1,10 +1,65 @@
 { pkgs, lib, ... }:
 
 {
+  services.mullvad-vpn.enable = true;
+  services.mullvad-vpn.package = pkgs.mullvad-vpn;
+  services.resolved.enable = true;
+
+  networking = {
+    hostName = "framework";
+    networkmanager.enable = true;
+    firewall.checkReversePath = "loose";
+    nftables = {
+      enable = true;
+      ruleset = ''
+        define EXCLUDED_IPS = {
+          100.64.0.0/10,
+        }
+
+        table inet excludeTraffic {
+          chain excludeOutgoing {
+            type route hook output priority 0; policy accept;
+            ip daddr $EXCLUDED_IPS ct mark set 0x00000f41 meta mark set 0x6d6f6c65;
+          }
+        }
+      '';
+    };
+  };
+
+  programs.virt-manager.enable = true;
+  users.groups.libvirtd.members = [ "cowe" ];
+  virtualisation.libvirtd.enable = true;
+  virtualisation.spiceUSBRedirection.enable = true;
+
+  nix.extraOptions = ''
+    extra-substituters = https://devenv.cachix.org
+    extra-trusted-public-keys = devenv.cachix.org-1:w1cLUi8dv3hnoSPGAuibQv+f9TZLr6cv/Hm9XgU50cw=
+  '';
+
+  services.borgbackup.jobs = {
+    backupToLocalServer = {
+      paths = [
+        "/home/cowe/documents"
+        "/home/cowe/media"
+      ];
+      exclude = [
+        "/home/media/movies/*"
+        "/home/media/tv-shows/*"
+        "/home/media/music/*"
+      ];
+      repo = "ssh://borg@100.118.34.125:22/var/lib/borg/framework";
+      environment.BORG_RSH = "ssh -i /home/cowe/.ssh/framework_borg";
+      encryption.mode = "none";
+      compression = "auto,lzma";
+      startAt = "daily";
+    };
+  };
+
+  services.gnome.at-spi2-core.enable = true;
   fonts.packages = with pkgs; [
     noto-fonts
     noto-fonts-cjk-sans
-    noto-fonts-emoji
+    noto-fonts-color-emoji
     liberation_ttf
     fira-code
     fira-code-symbols
@@ -12,7 +67,7 @@
     dina-font
     proggyfonts
   ];
-
+  services.flatpak.enable = true;
   programs.noisetorch.enable = true;
 
   services.tailscale.enable = true;
@@ -51,6 +106,9 @@
     git
     # wootility
     cmatrix
+    wireguard-tools
+    protonvpn-gui
+    orca
   ];
 
   boot.loader = {
@@ -61,11 +119,6 @@
     };
   };
 
-  networking = {
-    hostName = "framework";
-    networkmanager.enable = true;
-  };
-
   nix.settings.experimental-features = [
     "nix-command"
     "flakes"
@@ -74,7 +127,13 @@
   system.stateVersion = "24.11";
 
   i18n.defaultLocale = "en_US.UTF-8";
+  xdg.portal = {
 
+    enable = true;
+
+    xdgOpenUsePortal = true;
+
+  };
   time.timeZone = "Etc/GMT-1";
 
   console = {
